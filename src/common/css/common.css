@@ -810,4 +810,65 @@ html:root {
   .ctp-login-page .ctp-login-bottom span:last-child {
 	margin-right: 0;
   }
-  
+  .divider {
+	width: 100%;
+	position: relative;
+	background-color: var(--comp-color-divider-basic-background-default);
+	height: 16px;
+}
+ 
+
+:root {
+	 
+	/* font sizes */
+	--font-size-sm: 14px;
+	--font-size-xs: 12px;
+	--font-size-base: 16px;
+	
+	/* Colors */
+	--sys-color-background-overlay: #282828;
+	--comp-color-inputfield-basic-background-normal: #1e1e1e;
+	--sys-color-background-base: #0a0a0a;
+	--comp-color-button-secondary-background-normal: rgba(255, 255, 255, 0.4);
+	--comp-color-inputfield-basic-border-normal: rgba(255, 255, 255, 0.3);
+	--comp-color-text-secondary-foreground-normal: rgba(255, 255, 255, 0.9);
+	--comp-color-text-tertiary-foreground-normal: rgba(255, 255, 255, 0.6);
+	--comp-color-paginationitem-basic-background-selected: rgba(255, 255, 255, 0.1);
+	--comp-color-divider-basic-background-default: rgba(255, 255, 255, 0.2);
+	--comp-color-accessbaritem-basic-background-normal: rgba(0, 0, 0, 0);
+	--comp-color-accessbar-basic-background-normal: #383838;
+	--comp-white-foreground-normal: #fff;
+	--sys-color-ui-base2: #aeaeae;
+	--sys-color-functional-error: #ff453a;
+	--sys-color-functional-confirm: #27d36f;
+	--sys-color-functional-info: #00a3ff;
+	--sys-color-ui-base3: #5a5a5a;
+	--comp-color-button-primary-background-normal: #0277fe;
+	
+	/* Spacing */
+	--comp-radius-paginationitem: 2px;
+	--comp-radius-datagrid: 3px;
+	
+	/* Gaps */
+	--gap-base: 16px;
+	--gap-9xs: 4px;
+	--gap-5xs: 8px;
+	--gap-7xs: 6px;
+	--gap-xs: 12px;
+	
+	/* Paddings */
+	--padding-9xs: 4px;
+	--padding-xs: 12px;
+	--padding-base: 16px;
+	--padding-5xl: 24px;
+	--padding-5xs: 8px;
+	--padding-7xs: 6px;
+	--padding-3xs: 10px;
+	
+	/* Border radiuses */
+	--br-11xs: 2px;
+	--br-10xs: 3px;
+	
+	/* Effects */
+	--sys-shadow-raised: 0px 2px 6px rgba(0, 0, 0, 0.2);
+}
