@@ -25,17 +25,7 @@ html:root {
   }
   html:root.theme-dark {
 	--Tab-Border: rgba(var(--UI0RGB), var(--Opacity6));
-  }
-  html:root.theme-dark {
-	--Analysis-Status-Wait: rgba(var(--UI0RGB), var(--Opacity7));
-	--Analysis-Status-Wait-Text: var(--Font-Tertiary);
-	--Analysis-Status-Completed: rgba(var(--GreenRGB), var(--Opacity7));
-	--Analysis-Status-Completed-Text: var(--Green);
-	--Analysis-Status-Fail: rgba(var(--RedRGB), var(--Opacity7));
-	--Analysis-Status-Fail-Text: var(--Red);
-	--Analysis-Status-Cancel: rgba(var(--YellowRGB), var(--Opacity7));
-	--Analysis-Status-Cancel-Text: var(--Yellow);
-  }
+  } 
   html:root.theme-dark {
 	--User-Popover-Color: var(--Font-Secondary);
 	--User-Popover-Sub-Color: var(--Font-Tertiary);
