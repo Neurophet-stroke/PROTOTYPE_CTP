@@ -1,525 +1,1394 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Preview</title>
-<link href="src/common/css/common.css" rel="stylesheet"/>
-<style>
-  body {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    width: 100%;
-    height: 100vh;
-    -webkit-font-smoothing: antialiased;
-    font-family: "Spoqa Han Sans Neo";
-    margin: 0;
-    paddinG: 0;
-  }
-  .button {
-  cursor: pointer; /* 클릭 가능한 상태로 표시 */
-  border-radius: 4px; /* 버튼에 둥근 모서리 추가 */
-  padding: 0.25rem 0.75rem; /* 패딩 설정 */
-  margin-right: 0.5rem; /* 버튼 사이의 간격 */
-  background-color: transparent; /* 기본 배경색 */
-  transition: background-color 0.3s ease; /* 배경색에 애니메이션 추가 */
-}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Analysis</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
 
-.button.active, .button:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* 활성 상태 및 호버 상태에서 배경색 변경 */
-}
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			width: 100%;
+			height: 100vh;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			overflow-x: hidden;
+		}
 
-.button p {
-  margin: 0; /* 텍스트 마진 제거 */
-  color: #fff; /* 텍스트 색상 흰색 */
-  font-size: 0.875rem; /* 텍스트 크기 설정 */
-  font-weight: bold; /* 텍스트 굵게 설정 */
-}
+		*,
+		::after,
+		::before {
+			box-sizing: border-box;
+			border-width: 0;
+			border-style: solid;
+			border-color: #e5e7eb
+		}
 
-</style>
+		::after,
+		::before {
+			--tw-content: ''
+		}
+
+		:host,
+		html {
+			line-height: 1.5;
+			-webkit-text-size-adjust: 100%;
+			-moz-tab-size: 4;
+			tab-size: 4;
+			font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+			font-feature-settings: normal;
+			font-variation-settings: normal;
+			-webkit-tap-highlight-color: transparent
+		}
+
+		body {
+			margin: 0;
+			line-height: inherit
+		}
+
+		hr {
+			height: 0;
+			color: inherit;
+			border-top-width: 1px
+		}
+
+		abbr:where([title]) {
+			-webkit-text-decoration: underline dotted;
+			text-decoration: underline dotted
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-size: inherit;
+			font-weight: inherit
+		}
+
+		a {
+			color: inherit;
+			text-decoration: inherit
+		}
+
+		b,
+		strong {
+			font-weight: bolder
+		}
+
+		code,
+		kbd,
+		pre,
+		samp {
+			font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+			font-feature-settings: normal;
+			font-variation-settings: normal;
+			font-size: 1em
+		}
+
+		small {
+			font-size: 80%
+		}
+
+		sub,
+		sup {
+			font-size: 75%;
+			line-height: 0;
+			position: relative;
+			vertical-align: baseline
+		}
+
+		sub {
+			bottom: -.25em
+		}
+
+		sup {
+			top: -.5em
+		}
+
+		table {
+			text-indent: 0;
+			border-color: inherit;
+			border-collapse: collapse
+		}
+
+		button,
+		input,
+		optgroup,
+		select,
+		textarea {
+			font-family: inherit;
+			font-feature-settings: inherit;
+			font-variation-settings: inherit;
+			font-size: 100%;
+			font-weight: inherit;
+			line-height: inherit;
+			letter-spacing: inherit;
+			color: inherit;
+			margin: 0;
+			padding: 0
+		}
+
+		button,
+		select {
+			text-transform: none
+		}
+
+		button,
+		input:where([type=button]),
+		input:where([type=reset]),
+		input:where([type=submit]) {
+			-webkit-appearance: button;
+			background-color: transparent;
+			background-image: none
+		}
+
+		:-moz-focusring {
+			outline: auto
+		}
+
+		:-moz-ui-invalid {
+			box-shadow: none
+		}
+
+		progress {
+			vertical-align: baseline
+		}
+
+		::-webkit-inner-spin-button,
+		::-webkit-outer-spin-button {
+			height: auto
+		}
+
+		[type=search] {
+			-webkit-appearance: textfield;
+			outline-offset: -2px
+		}
+
+		::-webkit-search-decoration {
+			-webkit-appearance: none
+		}
+
+		::-webkit-file-upload-button {
+			-webkit-appearance: button;
+			font: inherit
+		}
+
+		summary {
+			display: list-item
+		}
+
+		blockquote,
+		dd,
+		dl,
+		figure,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		hr,
+		p,
+		pre {
+			margin: 0
+		}
+
+		fieldset {
+			margin: 0;
+			padding: 0
+		}
+
+		legend {
+			padding: 0
+		}
+
+		menu,
+		ol,
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0
+		}
+
+		dialog {
+			padding: 0
+		}
+
+		textarea {
+			resize: vertical
+		}
+
+		input::placeholder,
+		textarea::placeholder {
+			opacity: 1;
+			color: #9ca3af
+		}
+
+		[role=button],
+		button {
+			cursor: pointer
+		}
+
+		:disabled {
+			cursor: default
+		}
+
+		audio,
+		canvas,
+		embed,
+		iframe,
+		img,
+		object,
+		svg,
+		video {
+			display: block;
+			vertical-align: middle
+		}
+
+		img,
+		video {
+			max-width: 100%;
+			height: auto
+		}
+
+		[hidden] {
+			display: none
+		}
+
+		*,
+		::before,
+		::after {
+			--tw-border-spacing-x: 0;
+			--tw-border-spacing-y: 0;
+			--tw-translate-x: 0;
+			--tw-translate-y: 0;
+			--tw-rotate: 0;
+			--tw-skew-x: 0;
+			--tw-skew-y: 0;
+			--tw-scale-x: 1;
+			--tw-scale-y: 1;
+			--tw-pan-x: ;
+			--tw-pan-y: ;
+			--tw-pinch-zoom: ;
+			--tw-scroll-snap-strictness: proximity;
+			--tw-gradient-from-position: ;
+			--tw-gradient-via-position: ;
+			--tw-gradient-to-position: ;
+			--tw-ordinal: ;
+			--tw-slashed-zero: ;
+			--tw-numeric-figure: ;
+			--tw-numeric-spacing: ;
+			--tw-numeric-fraction: ;
+			--tw-ring-inset: ;
+			--tw-ring-offset-width: 0px;
+			--tw-ring-offset-color: #fff;
+			--tw-ring-color: rgb(59 130 246 / 0.5);
+			--tw-ring-offset-shadow: 0 0 #0000;
+			--tw-ring-shadow: 0 0 #0000;
+			--tw-shadow: 0 0 #0000;
+			--tw-shadow-colored: 0 0 #0000;
+			--tw-blur: ;
+			--tw-brightness: ;
+			--tw-contrast: ;
+			--tw-grayscale: ;
+			--tw-hue-rotate: ;
+			--tw-invert: ;
+			--tw-saturate: ;
+			--tw-sepia: ;
+			--tw-drop-shadow: ;
+			--tw-backdrop-blur: ;
+			--tw-backdrop-brightness: ;
+			--tw-backdrop-contrast: ;
+			--tw-backdrop-grayscale: ;
+			--tw-backdrop-hue-rotate: ;
+			--tw-backdrop-invert: ;
+			--tw-backdrop-opacity: ;
+			--tw-backdrop-saturate: ;
+			--tw-backdrop-sepia: ;
+			--tw-contain-size: ;
+			--tw-contain-layout: ;
+			--tw-contain-paint: ;
+			--tw-contain-style:
+		}
+
+		::backdrop {
+			--tw-border-spacing-x: 0;
+			--tw-border-spacing-y: 0;
+			--tw-translate-x: 0;
+			--tw-translate-y: 0;
+			--tw-rotate: 0;
+			--tw-skew-x: 0;
+			--tw-skew-y: 0;
+			--tw-scale-x: 1;
+			--tw-scale-y: 1;
+			--tw-pan-x: ;
+			--tw-pan-y: ;
+			--tw-pinch-zoom: ;
+			--tw-scroll-snap-strictness: proximity;
+			--tw-gradient-from-position: ;
+			--tw-gradient-via-position: ;
+			--tw-gradient-to-position: ;
+			--tw-ordinal: ;
+			--tw-slashed-zero: ;
+			--tw-numeric-figure: ;
+			--tw-numeric-spacing: ;
+			--tw-numeric-fraction: ;
+			--tw-ring-inset: ;
+			--tw-ring-offset-width: 0px;
+			--tw-ring-offset-color: #fff;
+			--tw-ring-color: rgb(59 130 246 / 0.5);
+			--tw-ring-offset-shadow: 0 0 #0000;
+			--tw-ring-shadow: 0 0 #0000;
+			--tw-shadow: 0 0 #0000;
+			--tw-shadow-colored: 0 0 #0000;
+			--tw-blur: ;
+			--tw-brightness: ;
+			--tw-contrast: ;
+			--tw-grayscale: ;
+			--tw-hue-rotate: ;
+			--tw-invert: ;
+			--tw-saturate: ;
+			--tw-sepia: ;
+			--tw-drop-shadow: ;
+			--tw-backdrop-blur: ;
+			--tw-backdrop-brightness: ;
+			--tw-backdrop-contrast: ;
+			--tw-backdrop-grayscale: ;
+			--tw-backdrop-hue-rotate: ;
+			--tw-backdrop-invert: ;
+			--tw-backdrop-opacity: ;
+			--tw-backdrop-saturate: ;
+			--tw-backdrop-sepia: ;
+			--tw-contain-size: ;
+			--tw-contain-layout: ;
+			--tw-contain-paint: ;
+			--tw-contain-style:
+		}
+
+		.absolute {
+			position: absolute
+		}
+
+		.relative {
+			position: relative
+		}
+
+		.left-0 {
+			left: 0px
+		}
+
+		.top-0 {
+			top: 0px
+		}
+
+		.top-12 {
+			top: 3rem
+		}
+
+		.top-\[7px\] {
+			top: 7px
+		}
+
+		.flex {
+			display: flex
+		}
+
+		.h-10 {
+			height: 2.5rem
+		}
+
+		.h-12 {
+			height: 3rem
+		}
+
+		.h-4 {
+			height: 1rem
+		}
+
+		.h-6 {
+			height: 1.5rem
+		}
+
+		.h-7 {
+			height: 1.75rem
+		}
+
+		.h-8 {
+			height: 2rem
+		}
+
+		.h-\[30px\] {
+			height: 30px
+		}
+
+		.h-\[866px\] {
+			height: 866px
+		}
+
+		.h-\[932px\] {
+			height: 932px
+		}
+
+		.h-\[980px\] {
+			height: 980px
+		}
+
+		.h-px {
+			height: 1px
+		}
+
+		.w-10 {
+			width: 2.5rem
+		}
+
+		.w-20 {
+			width: 5rem
+		}
+
+		.w-4 {
+			width: 1rem
+		}
+
+		.w-48 {
+			width: 12rem
+		}
+
+		.w-6 {
+			width: 1.5rem
+		}
+
+		.w-60 {
+			width: 15rem
+		}
+
+		.w-\[100px\] {
+			width: 100px
+		}
+
+		.w-\[105px\] {
+			width: 105px
+		}
+
+		.w-\[119px\] {
+			width: 119px
+		}
+
+		.w-\[120px\] {
+			width: 120px
+		}
+
+		.w-\[140px\] {
+			width: 140px
+		}
+
+		.w-\[1455px\] {
+			width: 1455px
+		}
+
+		.w-\[1920px\] {
+			width: 1920px
+		}
+
+		.w-\[19px\] {
+			width: 19px
+		}
+
+		.w-\[229px\] {
+			width: 229px
+		}
+
+		.w-\[254px\] {
+			width: 254px
+		}
+
+		.w-\[300px\] {
+			width: 300px
+		}
+
+		.w-\[344px\] {
+			width: 344px
+		}
+
+		.w-\[366\.5px\] {
+			width: 366.5px
+		}
+
+		.w-\[367\.5px\] {
+			width: 367.5px
+		}
+
+		.w-\[368px\] {
+			width: 368px
+		}
+
+		.w-\[387\.5px\] {
+			width: 387.5px
+		}
+
+		.w-\[39px\] {
+			width: 39px
+		}
+
+		.w-\[400px\] {
+			width: 400px
+		}
+
+		.w-\[59px\] {
+			width: 59px
+		}
+
+		.w-\[60px\] {
+			width: 60px
+		}
+
+		.w-\[79px\] {
+			width: 79px
+		}
+
+		.w-\[82px\] {
+			width: 82px
+		}
+
+		.w-\[87px\] {
+			width: 87px
+		}
+
+		.w-px {
+			width: 1px
+		}
+
+		.flex-shrink-0 {
+			flex-shrink: 0
+		}
+
+		.flex-grow {
+			flex-grow: 1
+		}
+
+		.flex-grow-0 {
+			flex-grow: 0
+		}
+
+		.flex-col {
+			flex-direction: column
+		}
+
+		.items-start {
+			align-items: flex-start
+		}
+
+		.items-center {
+			align-items: center
+		}
+
+		.justify-start {
+			justify-content: flex-start
+		}
+
+		.justify-end {
+			justify-content: flex-end
+		}
+
+		.justify-center {
+			justify-content: center
+		}
+
+		.justify-between {
+			justify-content: space-between
+		}
+
+		.gap-1 {
+			gap: 0.25rem
+		}
+
+		.gap-1\.5 {
+			gap: 0.375rem
+		}
+
+		.gap-2 {
+			gap: 0.5rem
+		}
+
+		.gap-2\.5 {
+			gap: 0.625rem
+		}
+
+		.gap-3 {
+			gap: 0.75rem
+		}
+
+		.gap-4 {
+			gap: 1rem
+		}
+
+		.gap-5 {
+			gap: 1.25rem
+		}
+
+		.self-stretch {
+			align-self: stretch
+		}
+
+		.overflow-hidden {
+			overflow: hidden
+		}
+
+		.rounded-\[3px\] {
+			border-radius: 3px
+		}
+
+		.rounded-sm {
+			border-radius: 0.125rem
+		}
+
+		.border {
+			border-width: 1px
+		}
+
+		.border-white\/10 {
+			border-color: rgb(255 255 255 / 0.1)
+		}
+
+		.border-white\/30 {
+			border-color: rgb(255 255 255 / 0.3)
+		}
+
+		.border-white\/60 {
+			border-color: rgb(255 255 255 / 0.6)
+		}
+
+		.bg-\[\#0277fe\] {
+			--tw-bg-opacity: 1;
+			background-color: rgb(2 119 254 / var(--tw-bg-opacity))
+		}
+
+		.bg-\[\#0a0a0a\] {
+			--tw-bg-opacity: 1;
+			background-color: rgb(10 10 10 / var(--tw-bg-opacity))
+		}
+
+		.bg-\[\#1e1e1e\] {
+			--tw-bg-opacity: 1;
+			background-color: rgb(30 30 30 / var(--tw-bg-opacity))
+		}
+
+		.bg-\[\#282828\] {
+			--tw-bg-opacity: 1;
+			background-color: rgb(40 40 40 / var(--tw-bg-opacity))
+		}
+
+		.bg-\[\#383838\] {
+			--tw-bg-opacity: 1;
+			background-color: rgb(56 56 56 / var(--tw-bg-opacity))
+		}
+
+		.bg-transparent {
+			background-color: transparent
+		}
+
+		.bg-white\/10 {
+			background-color: rgb(255 255 255 / 0.1)
+		}
+
+		.bg-white\/20 {
+			background-color: rgb(255 255 255 / 0.2)
+		}
+
+		.bg-white\/40 {
+			background-color: rgb(255 255 255 / 0.4)
+		}
+
+		.p-4 {
+			padding: 1rem
+		}
+
+		.p-6 {
+			padding: 1.5rem
+		}
+
+		.px-0\.5 {
+			padding-left: 0.125rem;
+			padding-right: 0.125rem
+		}
+
+		.px-1\.5 {
+			padding-left: 0.375rem;
+			padding-right: 0.375rem
+		}
+
+		.px-2 {
+			padding-left: 0.5rem;
+			padding-right: 0.5rem
+		}
+
+		.px-2\.5 {
+			padding-left: 0.625rem;
+			padding-right: 0.625rem
+		}
+
+		.px-3 {
+			padding-left: 0.75rem;
+			padding-right: 0.75rem
+		}
+
+		.px-4 {
+			padding-left: 1rem;
+			padding-right: 1rem
+		}
+
+		.px-5 {
+			padding-left: 1.25rem;
+			padding-right: 1.25rem
+		}
+
+		.py-1 {
+			padding-top: 0.25rem;
+			padding-bottom: 0.25rem
+		}
+
+		.py-2\.5 {
+			padding-top: 0.625rem;
+			padding-bottom: 0.625rem
+		}
+
+		.pb-4 {
+			padding-bottom: 1rem
+		}
+
+		.pl-6 {
+			padding-left: 1.5rem
+		}
+
+		.pr-2\.5 {
+			padding-right: 0.625rem
+		}
+
+		.pt-6 {
+			padding-top: 1.5rem
+		}
+
+		.text-left {
+			text-align: left
+		}
+
+		.text-base {
+			font-size: 1rem;
+			line-height: 1.5rem
+		}
+
+		.text-sm {
+			font-size: 0.875rem;
+			line-height: 1.25rem
+		}
+
+		.text-xl {
+			font-size: 1.25rem;
+			line-height: 1.75rem
+		}
+
+		.text-xs {
+			font-size: 0.75rem;
+			line-height: 1rem
+		}
+
+		.font-bold {
+			font-weight: 700
+		}
+
+		.font-medium {
+			font-weight: 500
+		}
+
+		.text-white {
+			--tw-text-opacity: 1;
+			color: rgb(255 255 255 / var(--tw-text-opacity))
+		}
+
+		.text-white\/60 {
+			color: rgb(255 255 255 / 0.6)
+		}
+
+		.text-white\/90 {
+			color: rgb(255 255 255 / 0.9)
+		}
+	</style>
+
 </head>
+
 <body>
-<div class="w-[100%] relative bg-[#00A3FF;]">
-	<div class="flex flex-col justify-start items-start w-[1920px] h-[932px] absolute left-0 top-12 overflow-hidden">
-		<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 pl-6 pr-2.5 pt-6 pb-4 bg-[#383838]">
-			<p class="flex-grow-0 flex-shrink-0 text-xl font-bold text-left text-white">
-				Analysis
-			</p>
-		</div>
-		<div class="flex flex-col justify-start items-start self-stretch flex-grow relative bg-[#282828]">
-			<div class="self-stretch flex-grow-0 flex-shrink-0 w-[1920px] h-px relative bg-white/20">
+	<div class="w-full relative bg-[#0a0a0a] overflow-x-hidden">
+		<!-- Analysis header -->
+		<div class="flex flex-col justify-start items-start w-full absolute left-0 top-12 overflow-hidden">
+			<div
+				class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 pl-6 pr-2.5 pt-6 pb-4 bg-[#383838]">
+				<p class="flex-grow-0 flex-shrink-0 text-xl font-bold text-left text-white">Analysis</p>
 			</div>
-			<div class="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0">
-				<div class="flex flex-col justify-start items-start flex-grow h-[866px] gap-4 p-6">
-					<div class="flex justify-between items-center self-stretch flex-grow-0 flex-shrink-0">
-						<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-3">
-							<div class="flex justify-center items-center flex-grow-0 flex-shrink-0 h-10 relative gap-1.5 px-4 rounded-[3px] bg-[#0277fe]">
-								<p class="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-white">
-									 Upload DICOM Image
-								</p>
-							</div>
-							<div class="flex-grow-0 flex-shrink-0 w-px h-10 relative bg-white/20">
-							</div>
-							<div class="flex flex-col justify-center items-start flex-grow-0 flex-shrink-0 h-10 w-[300px] overflow-hidden px-3 py-2.5 rounded-sm bg-[#1e1e1e] border border-white/30">
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-1.5">
-									<svg width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative" preserveaspectratio="xMidYMid meet">
-									<g opacity="0.6">
-									<path fill-rule="evenodd" clip-rule="evenodd" d="M9.89145 11.4568C9.01547 12.112 7.92805 12.5 6.75 12.5C3.85051 12.5 1.5 10.1495 1.5 7.25C1.5 4.35051 3.85051 2 6.75 2C9.6495 2 12 4.35051 12 7.25C12 8.42805 11.612 9.51547 10.9568 10.3914L14 13.4346L12.9346 14.5L9.89145 11.4568ZM11 7.25C11 9.59721 9.09721 11.5 6.75 11.5C4.40279 11.5 2.5 9.59721 2.5 7.25C2.5 4.90279 4.40279 3 6.75 3C9.09721 3 11 4.90279 11 7.25Z" fill="white"></path>
-									</g>
+			<!-- grid+panel -->
+			<div class="flex flex-col justify-start items-start self-stretch flex-grow relative bg-[#282828]">
+				<!-- divline -->
+				<div class="self-stretch flex-grow-0 flex-shrink-0 w-full h-px relative bg-white/20"></div>
+				<div class="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0">
+					<div class="flex flex-col justify-start items-start flex-grow h-[866px] gap-4 p-6">
+						<div class="flex justify-between items-center self-stretch flex-grow-0 flex-shrink-0">
+							<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-3">
+								<!-- dicom -->
+								<div
+									class="flex justify-center items-center flex-grow-0 flex-shrink-0 h-10 relative gap-1.5 px-4 rounded-[3px] bg-[#0277fe]">
+									<p class="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-white"> Upload
+										DICOM Image </p>
+								</div>
+								<!-- divider -->
+								<div class="flex-grow-0 flex-shrink-0 w-px h-10 relative bg-white/20"></div>
+								<!-- patient id -->
+								<div
+									class="flex flex-col justify-center items-start flex-grow-0 flex-shrink-0 h-10 w-[300px] overflow-hidden px-3 py-2.5 rounded-sm bg-[#1e1e1e] border border-white/30">
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-1.5">
+										<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+											class="flex-grow-0 flex-shrink-0 w-4 h-4 relative"
+											preserveAspectRatio="xMidYMid meet">
+											<g opacity="0.6">
+												<path fill-rule="evenodd" clip-rule="evenodd"
+													d="M9.89145 11.4568C9.01547 12.112 7.92805 12.5 6.75 12.5C3.85051 12.5 1.5 10.1495 1.5 7.25C1.5 4.35051 3.85051 2 6.75 2C9.6495 2 12 4.35051 12 7.25C12 8.42805 11.612 9.51547 10.9568 10.3914L14 13.4346L12.9346 14.5L9.89145 11.4568ZM11 7.25C11 9.59721 9.09721 11.5 6.75 11.5C4.40279 11.5 2.5 9.59721 2.5 7.25C2.5 4.90279 4.40279 3 6.75 3C9.09721 3 11 4.90279 11 7.25Z"
+													fill="white"></path>
+											</g>
+										</svg>
+										<p class="flex-grow w-[254px] text-sm text-left text-white/60"> Patient ID or
+											Patient Name </p>
+									</div>
+								</div>
+								<!-- analysis statud -->
+								<div
+									class="flex justify-start items-center flex-grow-0 flex-shrink-0 w-60 h-10 relative gap-2 px-3 py-2.5 rounded-sm bg-[#1e1e1e] border border-white/30">
+									<div class="flex flex-col justify-center items-start flex-grow relative">
+										<p class="flex-grow-0 flex-shrink-0 text-xs text-left text-white/60"> Analysis
+											Status </p>
+										<div
+											class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
+											<p class="flex-grow w-48 text-sm text-left text-white">All</p>
+										</div>
+									</div>
+									<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+										class="flex-grow-0 flex-shrink-0 w-4 h-4 relative"
+										preserveAspectRatio="xMidYMid meet">
+										<g opacity="0.6">
+											<path d="M4 5.5L12 5.5L8 10.5L4 5.5Z" fill="white"></path>
+										</g>
 									</svg>
-									<p class="flex-grow w-[254px] text-sm text-left text-white/60">
-										 Patient ID or Patient Name
+								</div>
+								<!-- button -->
+								<div
+									class="flex justify-center items-center flex-grow-0 flex-shrink-0 h-10 relative gap-1.5 px-4 rounded-[3px] bg-white/40 border border-white/10">
+									<p class="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-white"> Search
+									</p>
+								</div>
+								<div
+									class="flex justify-center items-center flex-grow-0 flex-shrink-0 h-10 relative gap-1.5 px-4 rounded-[3px] bg-transparent border border-white/60">
+									<p class="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-white"> Reset
 									</p>
 								</div>
 							</div>
-							<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 w-60 h-10 relative gap-2 px-3 py-2.5 rounded-sm bg-[#1e1e1e] border border-white/30">
-								<div class="flex flex-col justify-center items-start flex-grow relative">
-									<p class="flex-grow-0 flex-shrink-0 text-xs text-left text-white/60">
-										 Analysis Status
-									</p>
-									<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
-										<p class="flex-grow w-48 text-sm text-left text-white">
-											All
+							<div class="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-3">
+								<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white/60"> Display Items: 0
+								</p>
+							</div>
+						</div>
+						<div
+							class="flex flex-col justify-start items-start self-stretch flex-grow relative overflow-hidden px-2 py-1 rounded-[3px] bg-[#383838] border border-white/10">
+							<!-- column -->
+							<div
+								class="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 h-10 overflow-hidden">
+								<div
+									class="flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 w-10 relative bg-transparent">
+									<div
+										class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[19px] text-xs font-bold text-left text-white/60"> Status
+										</p>
+									</div>
+									<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20"></div>
+								</div>
+								<div
+									class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[60px] relative bg-transparent">
+									<div
+										class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[39px] text-xs font-bold text-left text-white/60">
+											Analysis ID </p>
+									</div>
+									<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20"></div>
+								</div>
+								<div
+									class="flex justify-start items-center self-stretch flex-grow relative bg-transparent">
+									<div
+										class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[366.5px] text-xs font-bold text-left text-white/60">
+											Patient ID </p>
+									</div>
+									<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20"></div>
+								</div>
+								<div
+									class="flex justify-start items-center self-stretch flex-grow relative bg-transparent">
+									<div
+										class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[366.5px] text-xs font-bold text-left text-white/60">
+											Patient Name </p>
+									</div>
+									<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20"></div>
+								</div>
+								<div
+									class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[100px] relative bg-transparent">
+									<div
+										class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[79px] text-xs font-bold text-left text-white/60"> Sex
+											(Age) </p>
+									</div>
+									<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20"></div>
+								</div>
+								<div
+									class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[140px] relative bg-transparent">
+									<div
+										class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[119px] text-xs font-bold text-left text-white/60"> Image
+											Type </p>
+									</div>
+									<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20"></div>
+								</div>
+								<div
+									class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[140px] relative bg-transparent">
+									<div
+										class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[119px] text-xs font-bold text-left text-white/60">
+											Analysis Requested </p>
+									</div>
+									<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20"></div>
+								</div>
+								<div
+									class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-20 relative bg-transparent">
+									<div
+										class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[59px] text-xs font-bold text-left text-white/60"> Source
+											of Image </p>
+									</div>
+									<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20"></div>
+								</div>
+								<div
+									class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] bg-transparent">
+									<div
+										class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[100px] text-xs font-bold text-left text-white/60"> Action
 										</p>
 									</div>
 								</div>
-								<svg width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative" preserveaspectratio="xMidYMid meet">
-								<g opacity="0.6">
-								<path d="M4 5.5L12 5.5L8 10.5L4 5.5Z" fill="white"></path>
-								</g>
-								</svg>
-							</div>
-							<div class="flex justify-center items-center flex-grow-0 flex-shrink-0 h-10 relative gap-1.5 px-4 rounded-[3px] bg-white/40 border border-white/10">
-								<p class="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-white">
-									 Search
-								</p>
-							</div>
-							<div class="flex justify-center items-center flex-grow-0 flex-shrink-0 h-10 relative gap-1.5 px-4 rounded-[3px] bg-transparent border border-white/60">
-								<p class="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-white">
-									 Reset
-								</p>
-							</div>
-						</div>
-						<div class="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-3">
-							<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white/60">
-								 Display Items: 0
-							</p>
-						</div>
-					</div>
-					<div class="flex flex-col justify-start items-start self-stretch flex-grow relative overflow-hidden px-2 py-1 rounded-[3px] bg-[#383838] border border-white/10">
-						<div class="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 h-10 overflow-hidden">
-							<div class="flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 w-10 relative bg-transparent">
-								<div class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[19px] text-xs font-bold text-left text-white/60">
-										 Status
-									</p>
-								</div>
-								<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20">
-								</div>
-							</div>
-							<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[60px] relative bg-transparent">
-								<div class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[39px] text-xs font-bold text-left text-white/60">
-										 Analysis ID
-									</p>
-								</div>
-								<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20">
-								</div>
-							</div>
-							<div class="flex justify-start items-center self-stretch flex-grow relative bg-transparent">
-								<div class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[366.5px] text-xs font-bold text-left text-white/60">
-										 Patient ID
-									</p>
-								</div>
-								<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20">
-								</div>
-							</div>
-							<div class="flex justify-start items-center self-stretch flex-grow relative bg-transparent">
-								<div class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[366.5px] text-xs font-bold text-left text-white/60">
-										 Patient Name
-									</p>
-								</div>
-								<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20">
-								</div>
-							</div>
-							<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[100px] relative bg-transparent">
-								<div class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[79px] text-xs font-bold text-left text-white/60">
-										 Sex (Age)
-									</p>
-								</div>
-								<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20">
-								</div>
-							</div>
-							<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[140px] relative bg-transparent">
-								<div class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[119px] text-xs font-bold text-left text-white/60">
-										 Image Type
-									</p>
-								</div>
-								<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20">
-								</div>
-							</div>
-							<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[140px] relative bg-transparent">
-								<div class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[119px] text-xs font-bold text-left text-white/60">
-										 Analysis Requested
-									</p>
-								</div>
-								<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20">
-								</div>
-							</div>
-							<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-20 relative bg-transparent">
-								<div class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[59px] text-xs font-bold text-left text-white/60">
-										 Source of Image
-									</p>
-								</div>
-								<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20">
-								</div>
-							</div>
-							<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] bg-transparent">
-								<div class="flex justify-start items-center flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[100px] text-xs font-bold text-left text-white/60">
-										 Action
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="self-stretch flex-grow-0 flex-shrink-0 w-[1455px] h-px relative bg-white/20">
-						</div>
-						<div class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative bg-transparent">
-							<div class="self-stretch flex-grow-0 flex-shrink-0 w-[1455px] h-px relative bg-white/20">
-							</div>
-							<div class="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1455px] h-10">
-								<div class="flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 w-10 relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<svg width="8" height="8" viewbox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0" preserveaspectratio="xMidYMid meet">
-									<circle cx="4" cy="4" r="4" fill="#27D36F"></circle>
-									</svg>
-								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[60px] relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-10 text-sm text-left text-white">
-										1
-									</p>
-								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[367.5px] text-sm text-left text-white">
-										 12345678901234567890
-									</p>
-								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[367.5px] text-sm text-left text-white">
-										Jungsuk Park
-									</p>
-								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[100px] relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-20 text-sm text-left text-white">
-										Female (65)
-									</p>
-								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[140px] relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[120px] text-sm text-left text-white">
-										CT Perfusion
-									</p>
-								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[140px] relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[120px] text-sm text-left text-white">
-										 2024-08-06 10:56
-									</p>
-								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-20 relative gap-1.5 px-2.5 py-1 bg-transparent">
-									<p class="flex-grow w-[60px] text-sm text-left text-white">
-										Auto
-									</p>
-								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] relative gap-3 px-2.5 py-1">
-									<svg width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative" preserveaspectratio="xMidYMid meet">
-									<g opacity="0.6">
-									<path fill-rule="evenodd" clip-rule="evenodd" d="M15 1.5H1V12.5H6.5V14H4V15H12V14H9.5V12.5H15V1.5ZM14 2.5H2V10.5H14V2.5Z" fill="white">
-									</path>
-									</g>
-									</svg><svg width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative" preserveaspectratio="xMidYMid meet">
-									<g opacity="0.6">
-									<path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 2.5H9.5V4H6.5V2.5ZM5.5 4V2.5V1.5H6.5H9.5H10.5V2.5V4H12.5H13.5H14.5V5H13.5V13.5V14.5H12.5H3.5H2.5V13.5V5H1.5V4H2.5H3.5H5.5ZM3.5 5V13.5H12.5V5H10.5H9.5H6.5H5.5H3.5ZM6 6V12.5H5V6H6ZM7.5 6H8.5V12.5H7.5V6ZM10 6V12.5H11V6H10Z" fill="white"></path>
-									</g>
-									</svg>
-								</div>
 							</div>
 							<div class="self-stretch flex-grow-0 flex-shrink-0 w-[1455px] h-px relative bg-white/20">
 							</div>
-							<div class="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1455px] h-10">
-								<div class="flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 w-10 h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+
+
+							<div
+								class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative bg-transparent">
+								<div
+									class="self-stretch flex-grow-0 flex-shrink-0 w-[1455px] h-px relative bg-white/20">
 								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[60px] h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+								<!-- data-value -->
+								<div class="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1455px] h-10">
+									<div
+										class="flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 w-10 relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<svg width="8" height="8" viewBox="0 0 8 8" fill="none"
+											xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0"
+											preserveAspectRatio="xMidYMid meet">
+											<circle cx="4" cy="4" r="4" fill="#27D36F"></circle>
+										</svg>
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[60px] relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-10 text-sm text-left text-white">1</p>
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[367.5px] text-sm text-left text-white">
+											12345678901234567890 </p>
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[367.5px] text-sm text-left text-white">Jungsuk Park</p>
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[100px] relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-20 text-sm text-left text-white">Female (65)</p>
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[140px] relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[120px] text-sm text-left text-white">CT Perfusion</p>
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[140px] relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[120px] text-sm text-left text-white"> 2024-08-06 10:56
+										</p>
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-20 relative gap-1.5 px-2.5 py-1 bg-transparent">
+										<p class="flex-grow w-[60px] text-sm text-left text-white">Auto</p>
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] relative gap-3 px-2.5 py-1">
+										<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+											class="flex-grow-0 flex-shrink-0 w-4 h-4 relative"
+											preserveAspectRatio="xMidYMid meet">
+											<g opacity="0.6">
+												<path fill-rule="evenodd" clip-rule="evenodd"
+													d="M15 1.5H1V12.5H6.5V14H4V15H12V14H9.5V12.5H15V1.5ZM14 2.5H2V10.5H14V2.5Z"
+													fill="white"></path>
+											</g>
+										</svg><svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+											class="flex-grow-0 flex-shrink-0 w-4 h-4 relative"
+											preserveAspectRatio="xMidYMid meet">
+											<g opacity="0.6">
+												<path fill-rule="evenodd" clip-rule="evenodd"
+													d="M6.5 2.5H9.5V4H6.5V2.5ZM5.5 4V2.5V1.5H6.5H9.5H10.5V2.5V4H12.5H13.5H14.5V5H13.5V13.5V14.5H12.5H3.5H2.5V13.5V5H1.5V4H2.5H3.5H5.5ZM3.5 5V13.5H12.5V5H10.5H9.5H6.5H5.5H3.5ZM6 6V12.5H5V6H6ZM7.5 6H8.5V12.5H7.5V6ZM10 6V12.5H11V6H10Z"
+													fill="white"></path>
+											</g>
+										</svg>
+									</div>
 								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow w-[387.5px] h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+								<div
+									class="self-stretch flex-grow-0 flex-shrink-0 w-[1455px] h-px relative bg-white/20">
 								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow w-[387.5px] h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+								<div class="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1455px] h-10">
+									<div
+										class="flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 w-10 h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[60px] h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow w-[387.5px] h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow w-[387.5px] h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[100px] h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[140px] h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[140px] h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-20 h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+									</div>
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] h-10 gap-3 px-2.5 py-1">
+									</div>
 								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[100px] h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+								<div class="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1455px] h-10">
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] h-10 gap-3 px-2.5 py-1">
+									</div>
 								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[140px] h-10 gap-1.5 px-2.5 py-1 bg-transparent">
+								<div class="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1455px] h-10">
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] h-10 gap-3 px-2.5 py-1">
+									</div>
 								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[140px] h-10 gap-1.5 px-2.5 py-1 bg-transparent">
-								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-20 h-10 gap-1.5 px-2.5 py-1 bg-transparent">
-								</div>
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] h-10 gap-3 px-2.5 py-1">
+								<div class="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1455px] h-10">
+									<div
+										class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] h-10 gap-3 px-2.5 py-1">
+									</div>
 								</div>
 							</div>
-							<div class="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1455px] h-10">
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] h-10 gap-3 px-2.5 py-1">
+						</div>
+						<div
+							class="flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
+							<div class="flex justify-start items-start flex-grow-0 flex-shrink-0 h-8 gap-1 px-0.5">
+								<div
+									class="flex justify-center items-center flex-grow-0 flex-shrink-0 h-8 relative gap-2.5 px-1.5 py-1 rounded-sm bg-transparent">
+									<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+										class="flex-grow-0 flex-shrink-0 w-4 h-4 relative"
+										preserveAspectRatio="xMidYMid meet">
+										<g opacity="0.6">
+											<path fill-rule="evenodd" clip-rule="evenodd"
+												d="M11.7 3.15377L6.82245 8L11.7 12.8462L10.5388 14L4.5 8L10.5388 2L11.7 3.15377Z"
+												fill="white"></path>
+										</g>
+									</svg>
+								</div>
+								<div
+									class="flex justify-center items-center flex-grow-0 flex-shrink-0 h-8 relative gap-2.5 px-1.5 py-1 rounded-sm bg-white/10">
+									<p class="flex-grow-0 flex-shrink-0 text-base text-left text-white/90">1</p>
+								</div>
+								<div
+									class="flex justify-center items-center flex-grow-0 flex-shrink-0 h-8 relative gap-2.5 px-1.5 py-1 rounded-sm bg-transparent">
+									<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+										class="flex-grow-0 flex-shrink-0 w-4 h-4 relative"
+										preserveAspectRatio="xMidYMid meet">
+										<g opacity="0.6">
+											<path fill-rule="evenodd" clip-rule="evenodd"
+												d="M5.3 12.8462L10.1775 8L5.3 3.15377L6.46123 2L12.5 8L6.46123 14L5.3 12.8462Z"
+												fill="white"></path>
+										</g>
+									</svg>
 								</div>
 							</div>
-							<div class="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1455px] h-10">
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] h-10 gap-3 px-2.5 py-1">
-								</div>
+							<div
+								class="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[120px] h-6 relative gap-1.5 px-2 py-1 rounded-sm bg-[#1e1e1e] border border-white/30">
+								<p class="flex-grow w-[82px] text-xs text-left text-white">20/page</p>
+								<svg width="17" height="16" viewBox="0 0 17 16" fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									class="flex-grow-0 flex-shrink-0 w-4 h-4 relative"
+									preserveAspectRatio="xMidYMid meet">
+									<g opacity="0.6">
+										<path d="M4.5 5.5L12.5 5.5L8.5 10.5L4.5 5.5Z" fill="white"></path>
+									</g>
+								</svg>
 							</div>
-							<div class="flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1455px] h-10">
-								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] h-10 gap-3 px-2.5 py-1">
+							<div
+								class="flex justify-start items-start flex-grow-0 flex-shrink-0 absolute left-0 top-[7px] gap-4">
+								<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5">
+									<svg width="8" height="9" viewBox="0 0 8 9" fill="none"
+										xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0"
+										preserveAspectRatio="xMidYMid meet">
+										<circle cx="4" cy="4.5" r="4" fill="#5A5A5A"></circle>
+									</svg>
+									<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">In Queue</p>
+								</div>
+								<div
+									class="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[87px] relative gap-1.5">
+									<svg width="8" height="9" viewBox="0 0 8 9" fill="none"
+										xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0"
+										preserveAspectRatio="xMidYMid meet">
+										<circle cx="4" cy="4.5" r="4" fill="#00A3FF"></circle>
+									</svg>
+									<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white"> In Progress </p>
+								</div>
+								<div
+									class="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[87px] relative gap-1.5">
+									<svg width="8" height="9" viewBox="0 0 8 9" fill="none"
+										xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0"
+										preserveAspectRatio="xMidYMid meet">
+										<circle cx="4" cy="4.5" r="4" fill="#27D36F"></circle>
+									</svg>
+									<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">Completed</p>
+								</div>
+								<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5">
+									<svg width="8" height="9" viewBox="0 0 8 9" fill="none"
+										xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0"
+										preserveAspectRatio="xMidYMid meet">
+										<circle cx="4" cy="4.5" r="4" fill="#FF453A"></circle>
+									</svg>
+									<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">Failed</p>
+								</div>
+								<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5">
+									<svg width="8" height="9" viewBox="0 0 8 9" fill="none"
+										xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0"
+										preserveAspectRatio="xMidYMid meet">
+										<circle cx="4" cy="4.5" r="3.5" stroke="#AEAEAE"></circle>
+									</svg>
+									<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">Canceled</p>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="flex justify-center items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
-						<div class="flex justify-start items-start flex-grow-0 flex-shrink-0 h-8 gap-1 px-0.5">
-							<div class="flex justify-center items-center flex-grow-0 flex-shrink-0 h-8 relative gap-2.5 px-1.5 py-1 rounded-sm bg-transparent">
-								<svg width="17" height="16" viewbox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative" preserveaspectratio="xMidYMid meet">
-								<g opacity="0.6">
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M11.7 3.15377L6.82245 8L11.7 12.8462L10.5388 14L4.5 8L10.5388 2L11.7 3.15377Z" fill="white">
-								</path>
-								</g>
-								</svg>
-							</div>
-							<div class="flex justify-center items-center flex-grow-0 flex-shrink-0 h-8 relative gap-2.5 px-1.5 py-1 rounded-sm bg-white/10">
-								<p class="flex-grow-0 flex-shrink-0 text-base text-left text-white/90">
-									1
-								</p>
-							</div>
-							<div class="flex justify-center items-center flex-grow-0 flex-shrink-0 h-8 relative gap-2.5 px-1.5 py-1 rounded-sm bg-transparent">
-								<svg width="17" height="16" viewbox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative" preserveaspectratio="xMidYMid meet">
-								<g opacity="0.6">
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M5.3 12.8462L10.1775 8L5.3 3.15377L6.46123 2L12.5 8L6.46123 14L5.3 12.8462Z" fill="white">
-								</path>
-								</g>
-								</svg>
-							</div>
-						</div>
-						<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[120px] h-6 relative gap-1.5 px-2 py-1 rounded-sm bg-[#1e1e1e] border border-white/30">
-							<p class="flex-grow w-[82px] text-xs text-left text-white">
-								20/page
-							</p>
-							<svg width="17" height="16" viewbox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative" preserveaspectratio="xMidYMid meet">
-							<g opacity="0.6">
-							<path d="M4.5 5.5L12.5 5.5L8.5 10.5L4.5 5.5Z" fill="white"></path>
-							</g>
-							</svg>
-						</div>
-						<div class="flex justify-start items-start flex-grow-0 flex-shrink-0 absolute left-0 top-[7px] gap-4">
-							<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5">
-								<svg width="8" height="9" viewbox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0" preserveaspectratio="xMidYMid meet">
-								<circle cx="4" cy="4.5" r="4" fill="#5A5A5A"></circle>
-								</svg>
-								<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">
-									In Queue
-								</p>
-							</div>
-							<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[87px] relative gap-1.5">
-								<svg width="8" height="9" viewbox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0" preserveaspectratio="xMidYMid meet">
-								<circle cx="4" cy="4.5" r="4" fill="#00A3FF"></circle>
-								</svg>
-								<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">
-									 In Progress
-								</p>
-							</div>
-							<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[87px] relative gap-1.5">
-								<svg width="8" height="9" viewbox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0" preserveaspectratio="xMidYMid meet">
-								<circle cx="4" cy="4.5" r="4" fill="#27D36F"></circle>
-								</svg>
-								<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">
-									Completed
-								</p>
-							</div>
-							<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5">
-								<svg width="8" height="9" viewbox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0" preserveaspectratio="xMidYMid meet">
-								<circle cx="4" cy="4.5" r="4" fill="#FF453A"></circle>
-								</svg>
-								<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">
-									Failed
-								</p>
-							</div>
-							<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-1.5">
-								<svg width="8" height="9" viewbox="0 0 8 9" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0" preserveaspectratio="xMidYMid meet">
-								<circle cx="4" cy="4.5" r="3.5" stroke="#AEAEAE"></circle>
-								</svg>
-								<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">
-									Canceled
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative">
-					<div class="self-stretch flex-grow-0 flex-shrink-0 w-px h-[866px] relative bg-white/20">
-					</div>
-					<div class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 w-[400px] relative">
-						<div class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-2 p-4 bg-[#383838]">
-							<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
-								<p class="flex-grow w-[344px] text-base font-bold text-left text-white">
-									 12345678901234567890
-								</p>
-								<svg width="16" height="16" viewbox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative" preserveaspectratio="xMidYMid meet">
-								<g opacity="0.6">
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M15 1.5H1V12.5H6.5V14H4V15H12V14H9.5V12.5H15V1.5ZM14 2.5H2V10.5H14V2.5Z" fill="white"></path>
-								</g>
-								</svg>
-							</div>
-							<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
-								<p class="flex-grow w-[368px] text-base font-bold text-left text-white">
-									 Jungsuk Park
-								</p>
-							</div>
-							<div class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-								<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-									 Female / 1900-00-00 (65)
-								</p>
-							</div>
-						</div>
-						<div class="self-stretch flex-grow-0 flex-shrink-0 w-[400px] h-px relative bg-white/20">
-						</div>
-						<div class="flex flex-col justify-start items-start self-stretch flex-grow relative gap-4 p-4 bg-[#383838]">
-							<div class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
-								<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm font-bold text-left text-white/90">
-									 Analysis Information
-								</p>
-								<div class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 Analysis ID
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 8
-									</p>
+					<div class="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative">
+						<div class="self-stretch flex-grow-0 flex-shrink-0 w-px h-[866px] relative bg-white/20"></div>
+						<div
+							class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 w-[400px] relative">
+							<div
+								class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-2 p-4 bg-[#383838]">
+								<div
+									class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
+									<p class="flex-grow w-[344px] text-base font-bold text-left text-white">
+										12345678901234567890 </p>
+									<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+										class="flex-grow-0 flex-shrink-0 w-4 h-4 relative"
+										preserveAspectRatio="xMidYMid meet">
+										<g opacity="0.6">
+											<path fill-rule="evenodd" clip-rule="evenodd"
+												d="M15 1.5H1V12.5H6.5V14H4V15H12V14H9.5V12.5H15V1.5ZM14 2.5H2V10.5H14V2.5Z"
+												fill="white"></path>
+										</g>
+									</svg>
 								</div>
-								<div class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 Image Type
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 CT Perfusion
-									</p>
+								<div
+									class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
+									<p class="flex-grow w-[368px] text-base font-bold text-left text-white"> Jungsuk
+										Park </p>
 								</div>
-								<div class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 Analysis Requested
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 2024-05-07 12:00
-									</p>
-								</div>
-								<div class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 Analysis Started
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 2024-05-07 12:05
-									</p>
-								</div>
-								<div class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 Analysis Completed
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 2024-05-07 12:20
-									</p>
+								<div
+									class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+									<p
+										class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+										Female / 1900-00-00 (65) </p>
 								</div>
 							</div>
-							<div class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] h-px relative bg-white/20">
+							<div class="self-stretch flex-grow-0 flex-shrink-0 w-[400px] h-px relative bg-white/20">
 							</div>
-							<div class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
-								<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm font-bold text-left text-white/90">
-									 Summary Result
-								</p>
-								<div class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 Mismatch Volume
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 63 mL
-									</p>
+							<div
+								class="flex flex-col justify-start items-start self-stretch flex-grow relative gap-4 p-4 bg-[#383838]">
+								<div
+									class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
+									<p
+										class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm font-bold text-left text-white/90">
+										Analysis Information </p>
+									<div
+										class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											Analysis ID </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											8 </p>
+									</div>
+									<div
+										class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											Image Type </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											CT Perfusion </p>
+									</div>
+									<div
+										class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											Analysis Requested </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											2024-05-07 12:00 </p>
+									</div>
+									<div
+										class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											Analysis Started </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											2024-05-07 12:05 </p>
+									</div>
+									<div
+										class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											Analysis Completed </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											2024-05-07 12:20 </p>
+									</div>
 								</div>
-								<div class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 Mismatch Ratio
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 2.3
-									</p>
+								<div class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] h-px relative bg-white/20">
 								</div>
-								<div class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 CBF &#x3C;30% Volume
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 49 mL
-									</p>
+								<div
+									class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
+									<p
+										class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm font-bold text-left text-white/90">
+										Summary Result </p>
+									<div
+										class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											Mismatch Volume </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											63 mL </p>
+									</div>
+									<div
+										class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											Mismatch Ratio </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											2.3 </p>
+									</div>
+									<div
+										class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											CBF &lt;30% Volume </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											49 mL </p>
+									</div>
+									<div
+										class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											Tmax &gt;6s Volume </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											112 mL </p>
+									</div>
 								</div>
-								<div class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 Tmax >6s Volume
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 112 mL
-									</p>
+								<div class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] h-px relative bg-white/20">
 								</div>
-							</div>
-							<div class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] h-px relative bg-white/20">
-							</div>
-							<div class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
-								<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm font-bold text-left text-white/90">
-									 Image Information
-								</p>
-								<div class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 Modality
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 CT
-									</p>
-								</div>
-								<div class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 Scan Date (Age)
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 2024-07-10 (65)
-									</p>
-								</div>
-								<div class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 Study Description
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 perfusion
-									</p>
-								</div>
-								<div class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 Series Description
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 perfusion
-									</p>
-								</div>
-								<div class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
-										 Source of Image
-									</p>
-									<p class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
-										 Auto
-									</p>
+								<div
+									class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-4">
+									<p
+										class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm font-bold text-left text-white/90">
+										Image Information </p>
+									<div
+										class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											Modality </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											CT </p>
+									</div>
+									<div
+										class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											Scan Date (Age) </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											2024-07-10 (65) </p>
+									</div>
+									<div
+										class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											Study Description </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											perfusion </p>
+									</div>
+									<div
+										class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											Series Description </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											perfusion </p>
+									</div>
+									<div
+										class="flex flex-col justify-center items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-1">
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-xs font-medium text-left text-white/60">
+											Source of Image </p>
+										<p
+											class="self-stretch flex-grow-0 flex-shrink-0 w-[368px] text-sm text-left text-white">
+											Auto </p>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -527,77 +1396,123 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="flex justify-between items-center w-[100%] absolute left-0 top-0 px-5 bg-[#383838]" style="box-shadow: 0px 2px 6px 0 rgba(0,0,0,0.2);">
-		<div class="flex justify-start items-center flex-grow gap-5">
-			<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[229px] h-[30px] relative gap-1">
-				<svg width="120" height="30" viewbox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0" preserveaspectratio="none">
-				<path d="M22.977 3C19.2422 3 15.8322 5.24 14.3708 8.6L6.41412 27H109.526L120 3H22.977Z" fill="#4E38CC">
-				</path>
-				<path d="M10.4736 3H22.977C22.8519 3 22.7293 3.00243 22.6092 3.00724C19.0198 3.14871 15.7841 5.35063 14.3708 8.6L6.41412 27H0L10.4736 3Z" fill="#8A75FF"></path>
-				<path d="M27.3613 10.2C25.088 10.2 23.3018 11.96 23.3018 14.2V20.04H24.9256V14.2C24.9256 12.84 25.9811 11.8 27.3613 11.8C28.7415 11.8 29.797 12.84 29.797 14.2V20.04H31.4208V14.2C31.4208 12.04 29.5534 10.2 27.3613 10.2Z" fill="white"></path>
-				<path d="M53.0176 14.2V20.04H54.6414V14.2C54.6414 12.84 55.6969 11.8 57.0771 11.8H57.889V10.2H57.0771C54.8038 10.2 53.0176 12.04 53.0176 14.2Z" fill="white"></path>
-				<path d="M49.2828 16.04C49.2828 17.4 48.2273 18.44 46.8471 18.44C45.4668 18.44 44.4114 17.4 44.4114 16.04V10.2H42.7875V16.04C42.7875 18.28 44.5737 20.04 46.8471 20.04C49.1204 20.04 50.9066 18.28 50.9066 16.04V10.2H49.2828V16.04Z" fill="white"></path>
-				<path d="M62.5981 10.2C60.3248 10.2 58.5386 11.96 58.5386 14.2V16.04C58.5386 18.28 60.3248 20.04 62.5981 20.04C64.8715 20.04 66.6577 18.28 66.6577 16.04V14.2C66.7388 12.04 64.8715 10.2 62.5981 10.2ZM65.0338 16.04C65.0338 17.4 63.9784 18.44 62.5981 18.44C61.2179 18.44 60.1624 17.4 60.1624 16.04V14.2C60.1624 12.84 61.2179 11.8 62.5981 11.8C63.9784 11.8 65.0338 12.84 65.0338 14.2V16.04Z" fill="white"></path>
-				<path d="M37.1042 10.2C34.8309 10.2 33.0447 11.96 33.0447 14.2V16.04C33.0447 18.28 34.8309 20.04 37.1042 20.04C39.3776 20.04 41.1638 18.28 41.1638 16.04H39.5399C39.5399 17.4 38.4845 18.44 37.1042 18.44C35.9675 18.44 34.9932 17.64 34.7497 16.6L41.1638 14.76V14.12C41.1638 12.04 39.3776 10.2 37.1042 10.2ZM34.6685 15V14.2C34.6685 12.84 35.724 11.8 37.1042 11.8C38.2409 11.8 39.2151 12.6 39.4587 13.64L34.6685 15Z" fill="white"></path>
-				<path d="M92.1516 10.2C89.8782 10.2 88.092 11.96 88.092 14.2V16.04C88.092 18.28 89.8782 20.04 92.1516 20.04C94.4249 20.04 96.2111 18.28 96.2111 16.04H94.5873C94.5873 17.4 93.5318 18.44 92.1516 18.44C91.0149 18.44 90.0406 17.64 89.797 16.6L96.2111 14.76V14.12C96.2111 12.04 94.3437 10.2 92.1516 10.2ZM89.7159 15V14.2C89.7159 12.84 90.7713 11.8 92.1516 11.8C93.2883 11.8 94.2626 12.6 94.5061 13.64L89.7159 15Z" fill="white"></path>
-				<path d="M72.5846 10.2C71.6915 10.2 70.7984 10.52 70.1489 11V10.2H68.5251V23.24H70.1489V19.24C70.7984 19.72 71.6915 20.04 72.5846 20.04C74.858 20.04 76.6442 18.28 76.6442 16.04V14.2C76.6442 12.04 74.858 10.2 72.5846 10.2ZM75.0204 16.04C75.0204 17.4 73.9649 18.44 72.5846 18.44C71.2044 18.44 70.1489 17.4 70.1489 16.04V14.2C70.1489 12.84 71.2044 11.8 72.5846 11.8C73.9649 11.8 75.0204 12.84 75.0204 14.2V16.04Z" fill="white"></path>
-				<path d="M82.4087 10.2C81.5156 10.2 80.6225 10.52 79.9729 11V7H78.3491V20.04H79.9729V14.2C79.9729 12.84 81.0284 11.8 82.4087 11.8C83.7889 11.8 84.8444 12.84 84.8444 14.2V20.04H86.4682V14.2C86.4682 12.04 84.6008 10.2 82.4087 10.2Z" fill="white"></path>
-				<path d="M99.7023 16.0401V11.8001H102.219L102.95 10.2001H99.7023V8.8401H98.0785V10.2001H96.6982V11.8001H98.0785V16.0401C98.0785 18.2801 99.8647 20.0401 102.138 20.0401H102.95V18.4401H102.138C100.758 18.4401 99.7023 17.4001 99.7023 16.0401Z" fill="white"></path>
-				</svg><svg width="105" height="28" viewbox="0 0 105 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-[105px] h-7 relative" preserveaspectratio="none">
-				<path d="M92.8027 22.9963V6.78125H97.5637C100.738 6.78125 103.107 8.80525 103.107 12.4853V13.1063C103.107 16.7863 100.738 18.7183 97.5637 18.7183H95.0567V22.9963H92.8027ZM95.0567 16.5563H97.4487C99.3807 16.5563 100.876 15.5213 100.876 13.0833V12.4853C100.876 9.67925 99.2197 8.96625 97.4487 8.96625H95.0567V16.5563Z" fill="#8A75FF"></path>
-				<path d="M84.201 22.9963V8.96625H80.291V6.78125H90.388V8.96625H86.455V22.9963H84.201Z" fill="#8A75FF">
-				</path>
-				<path d="M73.5808 23.2284C70.3838 23.2284 68.1758 20.9054 68.1758 17.5934V12.0964C68.1758 8.78438 70.3838 6.48438 73.5808 6.48438C76.8928 6.48438 79.0088 8.94538 79.0088 12.3264V12.4644H76.7548V12.3034C76.7548 10.3944 75.7428 8.66938 73.5808 8.66938C71.9938 8.66938 70.4298 9.68138 70.4298 12.0274V17.6624C70.4298 19.8934 71.8098 21.0434 73.5808 21.0434C75.9498 21.0434 76.7548 19.0424 76.7548 17.2714V17.1104H79.0088V17.2714C79.0088 20.7214 76.9618 23.2284 73.5808 23.2284Z" fill="#8A75FF"></path>
-				<path d="M51.6992 22.9963V6.78125H60.7152V8.96625H53.9532V13.8423H58.8752V15.8433H53.9532V20.8113H60.7152V22.9963H51.6992Z" fill="#8A75FF"></path>
-				<path d="M40.918 22.9963V6.78125H43.172V20.8113H49.405V22.9963H40.918Z" fill="#8A75FF"></path>
-				<path d="M25.9707 22.9963L31.2377 6.78125H33.7677L38.9427 22.9963H36.5737L35.4697 19.3393H29.4437L28.3167 22.9963H25.9707ZM30.0187 17.3843H34.9177L32.5027 9.26525L30.0187 17.3843Z" fill="#8A75FF"></path>
-				<path d="M19.696 23.2284C16.499 23.2284 14.291 20.9054 14.291 17.5934V12.0964C14.291 8.78438 16.499 6.48438 19.696 6.48438C23.008 6.48438 25.124 8.94538 25.124 12.3264V12.4644H22.87V12.3034C22.87 10.3944 21.858 8.66938 19.696 8.66938C18.109 8.66938 16.545 9.68138 16.545 12.0274V17.6624C16.545 19.8934 17.925 21.0434 19.696 21.0434C22.065 21.0434 22.87 19.0424 22.87 17.2714V17.1104H25.124V17.2714C25.124 20.7214 23.077 23.2284 19.696 23.2284Z" fill="#8A75FF"></path>
-				<path d="M6.53108 23.2744C3.21908 23.2744 1.08008 21.4804 1.08008 17.8464H3.31108C3.31108 20.2844 4.59908 21.1354 6.53108 21.1354C8.32508 21.1354 9.65908 20.2844 9.65908 18.5824C9.65908 16.8804 8.09508 16.3744 6.32408 15.8684C4.00108 15.1784 1.31008 14.4884 1.31008 11.0614C1.31008 8.14038 3.19608 6.48438 6.41608 6.48438C9.65908 6.48438 11.7291 8.25538 11.7291 11.7514H9.49808C9.49808 9.52038 8.32508 8.57738 6.41608 8.57738C4.59908 8.57738 3.54108 9.45138 3.54108 11.0614C3.54108 12.8784 5.26608 13.3614 7.15208 13.8904C9.42908 14.5344 11.9131 15.2704 11.9131 18.5364C11.9131 21.5724 9.84308 23.2744 6.53108 23.2744Z" fill="#8A75FF"></path>
+		<div class="flex justify-between items-center w-full absolute left-0 top-0 px-5 bg-[#383838]"
+			style="box-shadow: 0px 2px 6px 0 rgba(0,0,0,0.2); z-index: 10;">
+			<div class="flex justify-start items-center flex-grow gap-5">
+				<div
+					class="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[229px] h-[30px] relative gap-1">
+					<svg width="120" height="30" viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg"
+						class="flex-grow-0 flex-shrink-0" preserveAspectRatio="none">
+						<path d="M22.977 3C19.2422 3 15.8322 5.24 14.3708 8.6L6.41412 27H109.526L120 3H22.977Z"
+							fill="#4E38CC"></path>
+						<path
+							d="M10.4736 3H22.977C22.8519 3 22.7293 3.00243 22.6092 3.00724C19.0198 3.14871 15.7841 5.35063 14.3708 8.6L6.41412 27H0L10.4736 3Z"
+							fill="#8A75FF"></path>
+						<path
+							d="M27.3613 10.2C25.088 10.2 23.3018 11.96 23.3018 14.2V20.04H24.9256V14.2C24.9256 12.84 25.9811 11.8 27.3613 11.8C28.7415 11.8 29.797 12.84 29.797 14.2V20.04H31.4208V14.2C31.4208 12.04 29.5534 10.2 27.3613 10.2Z"
+							fill="white"></path>
+						<path
+							d="M53.0176 14.2V20.04H54.6414V14.2C54.6414 12.84 55.6969 11.8 57.0771 11.8H57.889V10.2H57.0771C54.8038 10.2 53.0176 12.04 53.0176 14.2Z"
+							fill="white"></path>
+						<path
+							d="M49.2828 16.04C49.2828 17.4 48.2273 18.44 46.8471 18.44C45.4668 18.44 44.4114 17.4 44.4114 16.04V10.2H42.7875V16.04C42.7875 18.28 44.5737 20.04 46.8471 20.04C49.1204 20.04 50.9066 18.28 50.9066 16.04V10.2H49.2828V16.04Z"
+							fill="white"></path>
+						<path
+							d="M62.5981 10.2C60.3248 10.2 58.5386 11.96 58.5386 14.2V16.04C58.5386 18.28 60.3248 20.04 62.5981 20.04C64.8715 20.04 66.6577 18.28 66.6577 16.04V14.2C66.7388 12.04 64.8715 10.2 62.5981 10.2ZM65.0338 16.04C65.0338 17.4 63.9784 18.44 62.5981 18.44C61.2179 18.44 60.1624 17.4 60.1624 16.04V14.2C60.1624 12.84 61.2179 11.8 62.5981 11.8C63.9784 11.8 65.0338 12.84 65.0338 14.2V16.04Z"
+							fill="white"></path>
+						<path
+							d="M37.1042 10.2C34.8309 10.2 33.0447 11.96 33.0447 14.2V16.04C33.0447 18.28 34.8309 20.04 37.1042 20.04C39.3776 20.04 41.1638 18.28 41.1638 16.04H39.5399C39.5399 17.4 38.4845 18.44 37.1042 18.44C35.9675 18.44 34.9932 17.64 34.7497 16.6L41.1638 14.76V14.12C41.1638 12.04 39.3776 10.2 37.1042 10.2ZM34.6685 15V14.2C34.6685 12.84 35.724 11.8 37.1042 11.8C38.2409 11.8 39.2151 12.6 39.4587 13.64L34.6685 15Z"
+							fill="white"></path>
+						<path
+							d="M92.1516 10.2C89.8782 10.2 88.092 11.96 88.092 14.2V16.04C88.092 18.28 89.8782 20.04 92.1516 20.04C94.4249 20.04 96.2111 18.28 96.2111 16.04H94.5873C94.5873 17.4 93.5318 18.44 92.1516 18.44C91.0149 18.44 90.0406 17.64 89.797 16.6L96.2111 14.76V14.12C96.2111 12.04 94.3437 10.2 92.1516 10.2ZM89.7159 15V14.2C89.7159 12.84 90.7713 11.8 92.1516 11.8C93.2883 11.8 94.2626 12.6 94.5061 13.64L89.7159 15Z"
+							fill="white"></path>
+						<path
+							d="M72.5846 10.2C71.6915 10.2 70.7984 10.52 70.1489 11V10.2H68.5251V23.24H70.1489V19.24C70.7984 19.72 71.6915 20.04 72.5846 20.04C74.858 20.04 76.6442 18.28 76.6442 16.04V14.2C76.6442 12.04 74.858 10.2 72.5846 10.2ZM75.0204 16.04C75.0204 17.4 73.9649 18.44 72.5846 18.44C71.2044 18.44 70.1489 17.4 70.1489 16.04V14.2C70.1489 12.84 71.2044 11.8 72.5846 11.8C73.9649 11.8 75.0204 12.84 75.0204 14.2V16.04Z"
+							fill="white"></path>
+						<path
+							d="M82.4087 10.2C81.5156 10.2 80.6225 10.52 79.9729 11V7H78.3491V20.04H79.9729V14.2C79.9729 12.84 81.0284 11.8 82.4087 11.8C83.7889 11.8 84.8444 12.84 84.8444 14.2V20.04H86.4682V14.2C86.4682 12.04 84.6008 10.2 82.4087 10.2Z"
+							fill="white"></path>
+						<path
+							d="M99.7023 16.0401V11.8001H102.219L102.95 10.2001H99.7023V8.8401H98.0785V10.2001H96.6982V11.8001H98.0785V16.0401C98.0785 18.2801 99.8647 20.0401 102.138 20.0401H102.95V18.4401H102.138C100.758 18.4401 99.7023 17.4001 99.7023 16.0401Z"
+							fill="white"></path>
+					</svg><svg width="105" height="28" viewBox="0 0 105 28" fill="none"
+						xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-[105px] h-7 relative"
+						preserveAspectRatio="none">
+						<path
+							d="M92.8027 22.9963V6.78125H97.5637C100.738 6.78125 103.107 8.80525 103.107 12.4853V13.1063C103.107 16.7863 100.738 18.7183 97.5637 18.7183H95.0567V22.9963H92.8027ZM95.0567 16.5563H97.4487C99.3807 16.5563 100.876 15.5213 100.876 13.0833V12.4853C100.876 9.67925 99.2197 8.96625 97.4487 8.96625H95.0567V16.5563Z"
+							fill="#8A75FF"></path>
+						<path d="M84.201 22.9963V8.96625H80.291V6.78125H90.388V8.96625H86.455V22.9963H84.201Z"
+							fill="#8A75FF"></path>
+						<path
+							d="M73.5808 23.2284C70.3838 23.2284 68.1758 20.9054 68.1758 17.5934V12.0964C68.1758 8.78438 70.3838 6.48438 73.5808 6.48438C76.8928 6.48438 79.0088 8.94538 79.0088 12.3264V12.4644H76.7548V12.3034C76.7548 10.3944 75.7428 8.66938 73.5808 8.66938C71.9938 8.66938 70.4298 9.68138 70.4298 12.0274V17.6624C70.4298 19.8934 71.8098 21.0434 73.5808 21.0434C75.9498 21.0434 76.7548 19.0424 76.7548 17.2714V17.1104H79.0088V17.2714C79.0088 20.7214 76.9618 23.2284 73.5808 23.2284Z"
+							fill="#8A75FF"></path>
+						<path
+							d="M51.6992 22.9963V6.78125H60.7152V8.96625H53.9532V13.8423H58.8752V15.8433H53.9532V20.8113H60.7152V22.9963H51.6992Z"
+							fill="#8A75FF"></path>
+						<path d="M40.918 22.9963V6.78125H43.172V20.8113H49.405V22.9963H40.918Z" fill="#8A75FF"></path>
+						<path
+							d="M25.9707 22.9963L31.2377 6.78125H33.7677L38.9427 22.9963H36.5737L35.4697 19.3393H29.4437L28.3167 22.9963H25.9707ZM30.0187 17.3843H34.9177L32.5027 9.26525L30.0187 17.3843Z"
+							fill="#8A75FF"></path>
+						<path
+							d="M19.696 23.2284C16.499 23.2284 14.291 20.9054 14.291 17.5934V12.0964C14.291 8.78438 16.499 6.48438 19.696 6.48438C23.008 6.48438 25.124 8.94538 25.124 12.3264V12.4644H22.87V12.3034C22.87 10.3944 21.858 8.66938 19.696 8.66938C18.109 8.66938 16.545 9.68138 16.545 12.0274V17.6624C16.545 19.8934 17.925 21.0434 19.696 21.0434C22.065 21.0434 22.87 19.0424 22.87 17.2714V17.1104H25.124V17.2714C25.124 20.7214 23.077 23.2284 19.696 23.2284Z"
+							fill="#8A75FF"></path>
+						<path
+							d="M6.53108 23.2744C3.21908 23.2744 1.08008 21.4804 1.08008 17.8464H3.31108C3.31108 20.2844 4.59908 21.1354 6.53108 21.1354C8.32508 21.1354 9.65908 20.2844 9.65908 18.5824C9.65908 16.8804 8.09508 16.3744 6.32408 15.8684C4.00108 15.1784 1.31008 14.4884 1.31008 11.0614C1.31008 8.14038 3.19608 6.48438 6.41608 6.48438C9.65908 6.48438 11.7291 8.25538 11.7291 11.7514H9.49808C9.49808 9.52038 8.32508 8.57738 6.41608 8.57738C4.59908 8.57738 3.54108 9.45138 3.54108 11.0614C3.54108 12.8784 5.26608 13.3614 7.15208 13.8904C9.42908 14.5344 11.9131 15.2704 11.9131 18.5364C11.9131 21.5724 9.84308 23.2744 6.53108 23.2744Z"
+							fill="#8A75FF"></path>
+					</svg>
+				</div>
+				<div class="flex justify-start items-center flex-grow h-12">
+					<div class="flex justify-start items-center flex-grow-0 flex-shrink-0">
+						<div
+							class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-3 py-1 bg-white/10">
+							<p class="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-white"> Analysis </p>
+						</div>
+						<div
+							class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-3 py-1 bg-transparent">
+							<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">Transfer</p>
+						</div>
+						<div
+							class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-3 py-1 bg-transparent">
+							<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">Configuration</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="flex justify-end items-center flex-grow-0 flex-shrink-0 h-12 relative gap-4">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+					class="flex-grow-0 flex-shrink-0 w-6 h-6 relative" preserveAspectRatio="xMidYMid meet">
+					<g opacity="0.6">
+						<path fill-rule="evenodd" clip-rule="evenodd"
+							d="M3 21.75V2.25H19C20.1046 2.25 21 3.12304 21 4.2V19.8C21 20.877 20.1046 21.75 19 21.75H3ZM4.125 20.625V3.375H6.75V20.625H4.125ZM7.875 20.625V3.375H18.125C19.0915 3.375 19.875 4.14731 19.875 5.1V18.9C19.875 19.8527 19.0915 20.625 18.125 20.625H7.875ZM12.7499 16.5H14.2499V15.0056H12.7499V16.5ZM12.7499 14.2585H14.2499C14.2812 13.902 14.3951 13.5576 14.5824 13.2523C14.7698 12.947 15.0256 12.6891 15.3298 12.4988C15.6663 12.2834 15.9473 11.9924 16.1505 11.6492C16.3537 11.306 16.4733 10.9201 16.4998 10.5225C16.5088 9.72988 16.2013 8.96614 15.645 8.39934C15.0888 7.83254 14.3293 7.50911 13.5337 7.50019C12.738 7.49127 11.9714 7.7976 11.4025 8.35179C10.8336 8.90598 10.509 9.66264 10.5 10.4553V10.5225H12C12 10.1262 12.158 9.74611 12.4393 9.46587C12.7206 9.18562 13.1021 9.02818 13.4999 9.02818C13.8977 9.02818 14.2792 9.18562 14.5605 9.46587C14.8418 9.74611 14.9999 10.1262 14.9999 10.5225C14.9999 11.1793 14.5733 11.5051 14.0791 11.8826L14.0774 11.8839C13.6635 12.1256 13.3221 12.4733 13.0887 12.8909C12.8553 13.3084 12.7383 13.7806 12.7499 14.2585Z"
+							fill="white"></path>
+					</g>
+				</svg><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+					class="flex-grow-0 flex-shrink-0 w-6 h-6 relative" preserveAspectRatio="xMidYMid meet">
+					<g opacity="0.6">
+						<path d="M10.873 8.18182V6H13.123V8.18182H10.873Z" fill="white"></path>
+						<path
+							d="M9.74805 10.3636V11.4545H10.873V16.9091H9.74805V18H14.248V16.9091H13.123V10.3636H9.74805Z"
+							fill="white"></path>
+						<path fill-rule="evenodd" clip-rule="evenodd"
+							d="M11.998 22.5C17.797 22.5 22.498 17.799 22.498 12C22.498 6.20101 17.797 1.5 11.998 1.5C6.19906 1.5 1.49805 6.20101 1.49805 12C1.49805 17.799 6.19906 22.5 11.998 22.5ZM11.998 21.375C17.1757 21.375 21.373 17.1777 21.373 12C21.373 6.82233 17.1757 2.625 11.998 2.625C6.82038 2.625 2.62305 6.82233 2.62305 12C2.62305 17.1777 6.82038 21.375 11.998 21.375Z"
+							fill="white"></path>
+					</g>
 				</svg>
-			</div>
-			<div class="flex justify-start items-center flex-grow h-12">
-        <div class="flex justify-start items-center flex-grow-0 flex-shrink-0">
-          <div class="button active">
-            <p class="text">Analysis</p>
-          </div>
-          <div class="button">
-            <p class="text">Transfer</p>
-          </div>
-          <div class="button">
-            <p class="text">Configuration</p>
-          </div>
-        </div>
-      </div>
-      
-		</div>
-		<div class="flex justify-end items-center flex-grow-0 flex-shrink-0 h-12 relative gap-4">
-			<svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-6 h-6 relative" preserveaspectratio="xMidYMid meet">
-			<g opacity="0.6">
-			<path fill-rule="evenodd" clip-rule="evenodd" d="M3 21.75V2.25H19C20.1046 2.25 21 3.12304 21 4.2V19.8C21 20.877 20.1046 21.75 19 21.75H3ZM4.125 20.625V3.375H6.75V20.625H4.125ZM7.875 20.625V3.375H18.125C19.0915 3.375 19.875 4.14731 19.875 5.1V18.9C19.875 19.8527 19.0915 20.625 18.125 20.625H7.875ZM12.7499 16.5H14.2499V15.0056H12.7499V16.5ZM12.7499 14.2585H14.2499C14.2812 13.902 14.3951 13.5576 14.5824 13.2523C14.7698 12.947 15.0256 12.6891 15.3298 12.4988C15.6663 12.2834 15.9473 11.9924 16.1505 11.6492C16.3537 11.306 16.4733 10.9201 16.4998 10.5225C16.5088 9.72988 16.2013 8.96614 15.645 8.39934C15.0888 7.83254 14.3293 7.50911 13.5337 7.50019C12.738 7.49127 11.9714 7.7976 11.4025 8.35179C10.8336 8.90598 10.509 9.66264 10.5 10.4553V10.5225H12C12 10.1262 12.158 9.74611 12.4393 9.46587C12.7206 9.18562 13.1021 9.02818 13.4999 9.02818C13.8977 9.02818 14.2792 9.18562 14.5605 9.46587C14.8418 9.74611 14.9999 10.1262 14.9999 10.5225C14.9999 11.1793 14.5733 11.5051 14.0791 11.8826L14.0774 11.8839C13.6635 12.1256 13.3221 12.4733 13.0887 12.8909C12.8553 13.3084 12.7383 13.7806 12.7499 14.2585Z" fill="white"></path>
-			</g>
-			</svg><svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-6 h-6 relative" preserveaspectratio="xMidYMid meet">
-			<g opacity="0.6">
-			<path d="M10.873 8.18182V6H13.123V8.18182H10.873Z" fill="white"></path>
-			<path d="M9.74805 10.3636V11.4545H10.873V16.9091H9.74805V18H14.248V16.9091H13.123V10.3636H9.74805Z" fill="white"></path>
-			<path fill-rule="evenodd" clip-rule="evenodd" d="M11.998 22.5C17.797 22.5 22.498 17.799 22.498 12C22.498 6.20101 17.797 1.5 11.998 1.5C6.19906 1.5 1.49805 6.20101 1.49805 12C1.49805 17.799 6.19906 22.5 11.998 22.5ZM11.998 21.375C17.1757 21.375 21.373 17.1777 21.373 12C21.373 6.82233 17.1757 2.625 11.998 2.625C6.82038 2.625 2.62305 6.82233 2.62305 12C2.62305 17.1777 6.82038 21.375 11.998 21.375Z" fill="white"></path>
-			</g>
-			</svg>
-			<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20">
-			</div>
-			<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-3 py-1 bg-transparent">
-				<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">
-					neurophet
-				</p>
-				<svg width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-6 h-6 relative" preserveaspectratio="xMidYMid meet">
-				<g opacity="0.6">
-				<path d="M6 8.25L18 8.25L12 15.75L6 8.25Z" fill="white"></path>
-				</g>
-				</svg>
+				<div class="flex-grow-0 flex-shrink-0 w-px h-4 relative bg-white/20"></div>
+				<div
+					class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-3 py-1 bg-transparent">
+					<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">neurophet</p>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+						class="flex-grow-0 flex-shrink-0 w-6 h-6 relative" preserveAspectRatio="xMidYMid meet">
+						<g opacity="0.6">
+							<path d="M6 8.25L18 8.25L12 15.75L6 8.25Z" fill="white"></path>
+						</g>
+					</svg>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<script src="https://cdn.tailwindcss.com"></script>
+
 </body>
+
 </html>
