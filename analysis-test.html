@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="theme-dark">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="src/ico/SCALE CTP_logo1.ico" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Neurophet SCALE CTP</title>
+  <link href="src/common/css/common.css" rel="stylesheet" />
+  <style>
+    /* 헤더 스타일 */
+    .section-header {
+      width: 100%;
+      background-color: #383838;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 50px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .header-left {
+      flex: 8;
+      display: flex;
+      align-items: center;
+    }
+
+    .product-logo {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+    }
+
+    .product-logo img {
+      margin-right: 10px;
+    }
+
+    .accessbar-item-parent {
+      display: flex;
+      font-size: 15px;
+    }
+
+    .accessbar-item {
+      padding: 10px;
+    }
+
+    .accessbar-item2 {
+      background-color: #4a4a4a;
+      padding: 10px;
+    }
+
+    .frame-wrapper3 {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .iconbutton {
+      height: 24px;
+      opacity: 0.3;
+      margin-right: 10px;
+    }
+
+    .divider-세 {
+      width: 1px;
+      background-color: #ccc;
+      height: 16px;
+      margin: 0 10px;
+    }
+
+    .divider-가 {
+      width: 100%;
+      position: relative;
+      background-color: var(--comp-color-divider-basic-background-default);
+      height: 1px;
+    }
+
+    .accessbar-item img {
+      margin-left: 5px;
+    }
+
+    /* 섹션 제목 스타일 */
+    .section-title {
+      width: 100%;
+      background-color:#383838;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding-left: 24px;
+      font-size: 24px;
+      padding: 20px;
+    } 
+  </style>
+
+</head>
+
+<body>
+  <div id="root">
+    <header class="section-header">
+      <div class="header-left">
+        <div class="product-logo">
+          <img src="src/img/logo/img_LogoColor.png" alt="Logo">
+          <img src="src/img/logo/Frame 52.png" alt="Logo Detail">
+        </div>
+        <div class="accessbar-item-parent">
+          <div class="accessbar-item2">Analysis</div>
+          <div class="accessbar-item">Transfer</div>
+          <div class="accessbar-item">Configuration</div>
+        </div>
+      </div>
+      <div class="frame-wrapper3">
+        <img class="iconbutton" src="src/img/logo/icon_InformationLine.svg" alt="Information">
+        <div class="divider-세"></div>
+        <div class="accessbar-item">
+          <a style="font-size: 15px; margin-bottom: 20px;">KSIN_DEMO</a>
+        </div>
+        <img src="src/img/logo/icon_DirectionFaceDown.svg" alt="Dropdown">
+      </div>
+    </header>
+
+    <div class="divider-가"> </div>
+
+    <section class="section-title">
+      <b>Analysis</b>
+    </section>
+
+    <div class="divider-가"></div>
+
+    <main>
+      <section class="main-contents1">
+      </section>
+      <section class="main-contents2">
+        <panel></panel>
+      </section>
+    </main>
+
+    <footer></footer>
+  </div>
+
+ <script src="https://cdn.tailwindcss.com"></script>
+
+</body>
+
+</html>
