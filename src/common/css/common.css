@@ -636,3 +636,190 @@ html:root {
 	--ctp-DataGrid-Row-Selected-Background: rgba(var(--UI3RGB), var(--Opacity6));
 	background-color: var(--Base4);
   }
+  .ctp-login-page {
+	background-color: var(--Base3);
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+  }
+  .ctp-login-page .ctp-login-wrap {
+	display: grid;
+	grid-template-rows: minmax(10px, 1fr) 471px minmax(10px, 1fr) 76px;
+	height: 100%;
+  }
+  .ctp-login-page .ctp-login-form-wrap {
+	background-color: var(--Base4);
+	margin: 0 auto;
+	text-align: center;
+  }
+  .ctp-login-page .ctp-login-form {
+	align-items: center;
+	border: 1px solid rgba(var(--UI0RGB), var(--Opacity6));
+	border-radius: 6px;
+	display: flex;
+	flex-direction: column;
+	height: 471px;
+	width: 456px;
+  }
+  .ctp-login-page .ctp-login-form > div {
+	width: 360px;
+  }
+  .ctp-login-page .ctp-login-form .ctp-login-form-logo {
+	margin-bottom: 56px;
+	margin-top: 64px;
+	text-align: center;
+  }
+  .ctp-login-page .ctp-login-form .ctp-login-form-logo img {
+	height: 80px;
+	width: 124px;
+  }
+  .ctp-login-page .ctp-login-form .ctp-login-form-group {
+	height: 100%;
+	position: relative;
+  }
+  .ctp-login-page
+	.ctp-login-form
+	.ctp-login-form-group
+	> form
+	> div.ctp-login-input-group {
+	margin-bottom: 16px;
+  }
+  .ctp-login-page
+	.ctp-login-form
+	.ctp-login-form-group
+	> form
+	> div.ctp-login-button-group {
+	bottom: 0;
+	padding-bottom: 48px;
+	position: absolute;
+	width: 100%;
+  }
+  .ctp-login-page
+	.ctp-login-form
+	.ctp-login-form-group
+	> form
+	> div.ctp-login-button-group
+	button {
+	width: 100%;
+  }
+  .ctp-login-page .ctp-login-form .ctp-login-form-group > form .ctp-icon-pass {
+	display: inline-block;
+	height: 100%;
+	margin-left: 1px;
+	vertical-align: top;
+	width: 100%;
+  }
+  .ctp-login-page .ctp-login-bottom {
+	color: var(--Font-Tertiary);
+	font: var(--Font-Scale-Micro1);
+	margin-bottom: 64px;
+	text-align: center;
+	width: 100%;
+  }
+  .ctp-login-page .ctp-login-bottom a {
+	color: inherit;
+  }
+  .ctp-login-page .ctp-login-bottom span {
+	margin-right: 16px;
+  }
+  .ctp-login-page .ctp-login-bottom span:last-child {
+	margin-right: 0;
+  }
+  div#root {
+	min-height: 0;
+	min-height: auto;
+	min-width: 0;
+	min-width: auto;
+  }
+  .ctp-login-page {
+	background-color: var(--Base3);
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+  }
+  .ctp-login-page .ctp-login-wrap {
+	display: grid;
+	grid-template-rows: minmax(10px, 1fr) 471px minmax(10px, 1fr) 76px;
+	height: 100%;
+  }
+  .ctp-login-page .ctp-login-form-wrap {
+	background-color: var(--Base4);
+	margin: 0 auto;
+	text-align: center;
+  }
+  .ctp-login-page .ctp-login-form {
+	align-items: center;
+	border: 1px solid rgba(var(--UI0RGB), var(--Opacity6));
+	border-radius: 6px;
+	display: flex;
+	flex-direction: column;
+	height: 471px;
+	width: 456px;
+  }
+  .ctp-login-page .ctp-login-form > div {
+	width: 360px;
+  }
+  .ctp-login-page .ctp-login-form .ctp-login-form-logo {
+	margin-bottom: 56px;
+	margin-top: 64px;
+	text-align: center;
+  }
+  .ctp-login-page .ctp-login-form .ctp-login-form-logo img {
+	height: 80px;
+	width: 124px;
+  }
+  .ctp-login-page .ctp-login-form .ctp-login-form-group {
+	height: 100%;
+	position: relative;
+  }
+  .ctp-login-page
+	.ctp-login-form
+	.ctp-login-form-group
+	> form
+	> div.ctp-login-input-group {
+	margin-bottom: 16px;
+  }
+  .ctp-login-page
+	.ctp-login-form
+	.ctp-login-form-group
+	> form
+	> div.ctp-login-button-group {
+	bottom: 0;
+	padding-bottom: 48px;
+	position: absolute;
+	width: 100%;
+  }
+  .ctp-login-page
+	.ctp-login-form
+	.ctp-login-form-group
+	> form
+	> div.ctp-login-button-group
+	button {
+	width: 100%;
+  }
+  .ctp-login-page .ctp-login-form .ctp-login-form-group > form .ctp-icon-pass {
+	display: inline-block;
+	height: 100%;
+	margin-left: 1px;
+	vertical-align: top;
+	width: 100%;
+  }
+  .ctp-login-page .ctp-login-bottom {
+	color: var(--Font-Tertiary);
+	font: var(--Font-Scale-Micro1);
+	margin-bottom: 64px;
+	text-align: center;
+	width: 100%;
+  }
+  .ctp-login-page .ctp-login-bottom a {
+	color: inherit;
+  }
+  .ctp-login-page .ctp-login-bottom span {
+	margin-right: 16px;
+  }
+  .ctp-login-page .ctp-login-bottom span:last-child {
+	margin-right: 0;
+  }
+  
