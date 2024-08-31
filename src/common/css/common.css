@@ -636,6 +636,17 @@ html:root {
 	--ctp-DataGrid-Row-Selected-Background: rgba(var(--UI3RGB), var(--Opacity6));
 	background-color: var(--Base4);
   }
+  #root {
+	height: 100%;
+	width: 100%;
+  }
+  div#root {
+	min-height: 0;
+	min-height: auto;
+	min-width: 0;
+	min-width: auto;
+  }
+  
   .ctp-login-page {
 	background-color: var(--Base3);
 	height: 100%;
@@ -725,13 +736,7 @@ html:root {
   }
   .ctp-login-page .ctp-login-bottom span:last-child {
 	margin-right: 0;
-  }
-  div#root {
-	min-height: 0;
-	min-height: auto;
-	min-width: 0;
-	min-width: auto;
-  }
+  } 
   .ctp-login-page {
 	background-color: var(--Base3);
 	height: 100%;
