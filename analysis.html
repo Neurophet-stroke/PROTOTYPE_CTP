@@ -6,7 +6,14 @@
 	<title>SCALE CTP_MAIN</title>
 	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
 	<style>
+	.svg-link {
+		text-decoration: none;
+		/* 링크의 기본 밑줄 제거 */
+	}
+
 	.svg-highlight {
+		margin-top: .5rem;
+		scale: 2;
 		color: #9b59b6;
 		/* 보라색 */
 		background-color: rgba(155, 89, 182, 0.1);
@@ -1160,21 +1167,14 @@
 									</div>
 									<!-- 뷰어아이콘 -->
 									<a href="https://example.com" target="_blank" class="svg-link">
-										<div
-											class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] relative gap-3 px-2.5 py-1">
-											<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-												xmlns="http://www.w3.org/2000/svg"
-												class="flex-grow-0 flex-shrink-0 w-4 h-4 relative svg-highlight"
-												preserveAspectRatio="xMidYMid meet">
+										<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] relative gap-3 px-2.5 py-1">
+											<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative svg-highlight" preserveAspectRatio="xMidYMid meet">
 												<g opacity="0.9">
-													<path fill-rule="evenodd" clip-rule="evenodd"
-														d="M15 1.5H1V12.5H6.5V14H4V15H12V14H9.5V12.5H15V1.5ZM14 2.5H2V10.5H14V2.5Z"
-														fill="currentColor"></path>
+													<path fill-rule="evenodd" clip-rule="evenodd" d="M15 1.5H1V12.5H6.5V14H4V15H12V14H9.5V12.5H15V1.5ZM14 2.5H2V10.5H14V2.5Z" fill="currentColor"></path>
 												</g>
 											</svg>
 										</div>
 									</a>
-									
 								</div>
 								<div class="self-stretch flex-grow-0 flex-shrink-0 w-[1455px] h-px relative bg-white/20">
 								</div>
@@ -1274,17 +1274,24 @@
 							</div>
 						</div>
 					</div>
-					<div class="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative">
-						<div class="self-stretch flex-grow-0 flex-shrink-0 w-px h-[866px] relative bg-white/20"></div>
+
+					<div class="flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative overflow-y-auto">
+						<div class="self-stretch flex-grow-0 flex-shrink-0 w-px h-[866px] relative bg-white/20">
+						</div>
 						<div class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 w-[400px] relative">
 							<div class="flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 gap-2 p-4 bg-[#383838]">
 								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
 									<p class="flex-grow w-[344px] text-base font-bold text-left text-white"> 12345678901234567890 </p>
-									<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative" preserveAspectRatio="xMidYMid meet">
-										<g opacity="0.6">
-											<path fill-rule="evenodd" clip-rule="evenodd" d="M15 1.5H1V12.5H6.5V14H4V15H12V14H9.5V12.5H15V1.5ZM14 2.5H2V10.5H14V2.5Z" fill="white"></path>
-										</g>
-									</svg>
+									<!-- 뷰어아이콘 -->
+									<a href="https://example.com" target="_blank" class="svg-link">
+										<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] relative gap-3 px-2.5 py-1">
+											<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative svg-highlight" preserveAspectRatio="xMidYMid meet">
+												<g opacity="0.9">
+													<path fill-rule="evenodd" clip-rule="evenodd" d="M15 1.5H1V12.5H6.5V14H4V15H12V14H9.5V12.5H15V1.5ZM14 2.5H2V10.5H14V2.5Z" fill="currentColor"></path>
+												</g>
+											</svg>
+										</div>
+									</a>
 								</div>
 								<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
 									<p class="flex-grow w-[368px] text-base font-bold text-left text-white"> Jungsuk Park </p>
