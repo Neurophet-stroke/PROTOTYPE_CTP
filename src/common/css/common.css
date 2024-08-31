@@ -1,3 +1,638 @@
-* {
-	font-family: Spoqa Han Sans Neo, sans-serif
-}
+html:root {
+	--Form-Label-Font: var(--Font-Scale-Body2);
+	--Form-Icon-Required-Font: var(--Font-Scale-Header3);
+	--font-family: Spoqa Han Sans Neo, sans-serif;
+  }
+  html:root.theme-dark {
+	--Form-Label: var(--Font-Secondary);
+	--Form-Icon-Required: var(--Font-Highlight);
+  }
+  html:root {
+	--ctp-TextField-Invalid-Error-Text: var(--Red);
+	--ctp-TextField-Invalid-Error-Border: var(--Red);
+	--ctp-TextField-Invalid-Warning-Text: var(--Yellow);
+	--ctp-TextField-Invalid-Warning-Border: var(--Yellow);
+	--ctp-TextField-Invalid-Pass-Text: var(--Green);
+	--ctp-TextField-Invalid-Pass-Border: var(--Green);
+  }
+  html:root.theme-dark {
+	--Footer-Background: var(--Base1);
+	--Footer-Color: var(--Font-Tertiary);
+	--Footer-Divider: rgba(var(--UI0RGB), var(--Opacity5));
+  }
+  html:root {
+	--Tab-Item-Padding: 8px 24px 7px;
+  }
+  html:root.theme-dark {
+	--Tab-Border: rgba(var(--UI0RGB), var(--Opacity6));
+  }
+  html:root.theme-dark {
+	--Analysis-Status-Wait: rgba(var(--UI0RGB), var(--Opacity7));
+	--Analysis-Status-Wait-Text: var(--Font-Tertiary);
+	--Analysis-Status-Completed: rgba(var(--GreenRGB), var(--Opacity7));
+	--Analysis-Status-Completed-Text: var(--Green);
+	--Analysis-Status-Fail: rgba(var(--RedRGB), var(--Opacity7));
+	--Analysis-Status-Fail-Text: var(--Red);
+	--Analysis-Status-Cancel: rgba(var(--YellowRGB), var(--Opacity7));
+	--Analysis-Status-Cancel-Text: var(--Yellow);
+  }
+  html:root.theme-dark {
+	--User-Popover-Color: var(--Font-Secondary);
+	--User-Popover-Sub-Color: var(--Font-Tertiary);
+	--User-Level: rgba(var(--UI0RGB), var(--Opacity7));
+	--User-Level-Font: var(--Font-Tertiary);
+  }
+  html:root {
+	--Font-Weight-Light: 300;
+	--Font-Weight-Default: 400;
+	--Font-Weight-Medium: 500;
+	--Font-Weight-Bold: 700;
+	--Font-Scale-Super-Header: var(--Font-Weight-Bold) 20px/1.4
+	  "Spoqa Han Sans Neo";
+	--Font-Scale-Header1: var(--Font-Weight-Bold) 18px/1.4 "Spoqa Han Sans Neo";
+	--Font-Scale-Header2: var(--Font-Weight-Bold) 16px/1.4 "Spoqa Han Sans Neo";
+	--Font-Scale-Header3: var(--Font-Weight-Bold) 14px/1.4 "Spoqa Han Sans Neo";
+	--Font-Scale-Header4: var(--Font-Weight-Bold) 12px/1.4 "Spoqa Han Sans Neo";
+	--Font-Scale-Title1: var(--Font-Weight-Medium) 18px/1.4 "Spoqa Han Sans Neo";
+	--Font-Scale-Title2: var(--Font-Weight-Medium) 16px/1.4 "Spoqa Han Sans Neo";
+	--Font-Scale-Title3: var(--Font-Weight-Medium) 14px/1.4 "Spoqa Han Sans Neo";
+	--Font-Scale-Title4: var(--Font-Weight-Medium) 12px/1.4 "Spoqa Han Sans Neo";
+	--Font-Scale-Body1: var(--Font-Weight-Default) 16px/1.4 "Spoqa Han Sans Neo";
+	--Font-Scale-Body2: var(--Font-Weight-Default) 14px/1.4 "Spoqa Han Sans Neo";
+	--Font-Scale-Body3: var(--Font-Weight-Default) 12px/1.4 "Spoqa Han Sans Neo";
+	--Font-Scale-Micro1: var(--Font-Weight-Default) 10px/1.4 "Spoqa Han Sans Neo";
+  }
+  html.theme-dark:root {
+	--Base0: #0a0a0a;
+	--Base0RGB: 10, 10, 10;
+	--Base1: #191919;
+	--Base1RGB: 25, 25, 25;
+	--Base2: #1e1e1e;
+	--Base2RGB: 30, 30, 30;
+	--Base3: #282828;
+	--Base3RGB: 40, 40, 40;
+	--Base4: #383838;
+	--Base4RGB: 56, 56, 56;
+	--BaseWhite: #fff;
+	--BaseWhiteRGB: 255, 255, 255;
+	--BaseBlack: #000;
+	--BaseBlackRGB: 0, 0, 0;
+	--BaseGrey: #383838;
+	--BaseGreyRGB: 56, 56, 56;
+	--UI0: #fff;
+	--UI0RGB: 255, 255, 255;
+	--UI1: #1077fe;
+	--UI1RGB: 16, 119, 254;
+	--UI2: #509cff;
+	--UI2RGB: 80, 156, 255;
+	--UI3: #016af4;
+	--UI3RGB: 1, 106, 244;
+	--UI4: #aeaeae;
+	--UI4RGB: 174, 174, 174;
+	--UI5: #5a5a5a;
+	--UI5RGB: 90, 90, 90;
+	--UI6: #000;
+	--UI6RGB: 0, 0, 0;
+	--UI7: #383838;
+	--UI7RGB: 56, 56, 56;
+	--Foreground1: #fff;
+	--Foreground1RGB: 255, 255, 255;
+	--Foreground2: #fff;
+	--Foreground2RGB: 255, 255, 255;
+	--Foreground3: #509cff;
+	--Foreground3RGB: 80, 156, 255;
+	--ForegroundWhite: #fff;
+	--ForegroundWhiteRGB: 255, 255, 255;
+	--Blue: #297de2;
+	--BlueRGB: 41, 125, 226;
+	--Green: #0d9f73;
+	--GreenRGB: 13, 159, 115;
+	--Red: #da2651;
+	--RedRGB: 218, 38, 81;
+	--Yellow: #eb9719;
+	--YellowRGB: 235, 151, 25;
+	--Support0: #d47300;
+	--Support0RGB: 212, 115, 0;
+	--Opacity1: 1;
+	--Opacity2: 0.9;
+	--Opacity3: 0.6;
+	--Opacity4: 0.4;
+	--Opacity5: 0.3;
+	--Opacity6: 0.2;
+	--Opacity7: 0.1;
+	--Opacity8: 0.05;
+	--Transparent: transparent;
+	--BoxShadow1: 0 2px 6px rgba(var(--BaseBlackRGB), var(--Opacity6));
+	--BoxShadow2: 0 6px 14px rgba(var(--BaseBlackRGB), var(--Opacity6));
+	--Font-Primary: rgba(var(--Foreground1RGB), var(--Opacity1));
+	--Font-Primary-Disabled: rgba(var(--Foreground1RGB), var(--Opacity6));
+	--Font-Secondary: rgba(var(--Foreground1RGB), var(--Opacity2));
+	--Font-Secondary-Disabled: rgba(var(--Foreground1RGB), var(--Opacity6));
+	--Font-Tertiary: rgba(var(--Foreground2RGB), var(--Opacity3));
+	--Font-Tertiary-Disabled: rgba(var(--Foreground2RGB), var(--Opacity6));
+	--Font-Highlight: rgba(var(--Foreground3RGB), var(--Opacity1));
+	--Font-Highlight-Disabled: rgba(var(--Foreground3RGB), var(--Opacity6));
+	--Font-White: rgba(var(--ForegroundWhiteRGB), var(--Opacity1));
+	--Font-White-Disabled: rgba(var(--ForegroundWhiteRGB), var(--Opacity6));
+	--Divider-Background: rgba(var(--UI0RGB), var(--Opacity6));
+  }
+  html:root {
+	--Button-Font-XSmall: var(--Font-Scale-Title4);
+	--Button-Font-Small: var(--Font-Scale-Title3);
+	--Button-Font-Medium: var(--Font-Scale-Title3);
+	--Button-Font-Large: var(--Font-Scale-Title2);
+	--Button-XSmall-Height: 24px;
+	--Button-XSmall-Icon-Wrap-Size: 16px;
+	--Button-XSmall-Padding: 4px 10px 3px 10px;
+	--Button-Tertiary-XSmall-Padding: 3px 9px 2px 9px;
+	--Button-Small-Height: 32px;
+	--Button-Small-Icon-Wrap-Size: 16px;
+	--Button-Small-Padding: 6px 10px;
+	--Button-Tertiary-Small-Padding: 5px 9px;
+	--Button-Medium-Height: 40px;
+	--Button-Medium-Icon-Wrap-Size: 16px;
+	--Button-Medium-Padding: 6px 16px;
+	--Button-Tertiary-Medium-Padding: 5px 15px;
+	--Button-Large-Height: 54px;
+	--Button-Large-Icon-Wrap-Size: 24px;
+	--Button-Large-Padding: 16px;
+	--Button-Tertiary-Large-Padding: 15px;
+	--IconButton-XSmall-Size: 24px;
+	--IconButton-XSmall-Icon-Wrap-Size: 16px;
+	--IconButton-XSmall-Padding: 4px;
+	--IconButton-Small-Size: 32px;
+	--IconButton-Small-Icon-Wrap-Size: 24px;
+	--IconButton-Small-Padding: 4px;
+	--IconButton-Medium-Size: 40px;
+	--IconButton-Medium-Icon-Wrap-Size: 24px;
+	--IconButton-Medium-Padding: 8px;
+	--IconButton-Large-Size: 54px;
+	--IconButton-Large-Icon-Wrap-Size: 32px;
+	--IconButton-Large-Padding: 11px;
+  }
+  html:root.theme-dark {
+	--Button-Primary-Background: rgba(var(--UI1RGB), var(--Opacity1));
+	--Button-Primary-Text: var(--Font-White);
+	--Button-Primary-Icon: rgba(var(--BaseWhiteRGB), var(--Opacity1));
+	--Button-Primary-Background-Hover: rgba(var(--UI2RGB), var(--Opacity1));
+	--Button-Primary-Background-Pressed: rgba(var(--UI3RGB), var(--Opacity1));
+	--Button-Primary-Background-Disabled: rgba(var(--UI1RGB), var(--Opacity6));
+	--Button-Primary-Text-Disabled: var(--Font-White-Disabled);
+	--Button-Primary-Icon-Disabled: rgba(var(--BaseWhiteRGB), var(--Opacity6));
+	--Button-Secondary-Background: rgba(var(--UI0RGB), var(--Opacity5));
+	--Button-Secondary-Text: var(--Font-White);
+	--Button-Secondary-Icon: rgba(var(--BaseWhiteRGB), var(--Opacity1));
+	--Button-Secondary-Background-Hover: rgba(var(--UI0RGB), var(--Opacity4));
+	--Button-Secondary-Background-Pressed: rgba(var(--UI0RGB), var(--Opacity6));
+	--Button-Secondary-Background-Disabled: rgba(var(--UI0RGB), var(--Opacity7));
+	--Button-Secondary-Text-Disabled: var(--Font-White-Disabled);
+	--Button-Secondary-Icon-Disabled: rgba(var(--BaseWhiteRGB), var(--Opacity6));
+	--Button-Tertiary-Background: var(--Transparent);
+	--Button-Tertiary-Border: rgba(var(--UI0RGB), var(--Opacity6));
+	--Button-Tertiary-Text: var(--Font-Secondary);
+	--Button-Tertiary-Icon: rgba(var(--UI0RGB), var(--Opacity2));
+	--Button-Tertiary-Background-Hover: rgba(var(--UI0RGB), var(--Opacity7));
+	--Button-Tertiary-Background-Pressed: rgba(var(--UI0RGB), var(--Opacity8));
+	--Button-Tertiary-Border-Disabled: rgba(var(--UI0RGB), var(--Opacity7));
+	--Button-Tertiary-Text-Disabled: var(--Font-Secondary-Disabled);
+	--Button-Tertiary-Icon-Disabled: rgba(var(--UI0RGB), var(--Opacity6));
+	--IconButton-Background: rgba(var(--UI0RGB), var(--Opacity5));
+	--IconButton-Icon: rgba(var(--BaseWhiteRGB), var(--Opacity1));
+	--IconButton-Background-Hover: rgba(var(--UI0RGB), var(--Opacity4));
+	--IconButton-Background-Pressed: rgba(var(--UI0RGB), var(--Opacity6));
+	--IconButton-Background-Disabled: rgba(var(--UI0RGB), var(--Opacity7));
+	--IconButton-Icon-Disabled: rgba(var(--BaseWhiteRGB), var(--Opacity6));
+	--GhostButton-Background: var(--Transparent);
+	--GhostButton-Text: var(--Font-Secondary);
+	--GhostButton-Icon: rgba(var(--UI0RGB), var(--Opacity2));
+	--GhostButton-Background-Hover: rgba(var(--UI0RGB), var(--Opacity6));
+	--GhostButton-Background-Pressed: rgba(var(--UI0RGB), var(--Opacity7));
+	--GhostButton-Text-Disabled: var(--Font-Secondary-Disabled);
+	--GhostButton-Icon-Disabled: rgba(var(--UI0RGB), var(--Opacity6));
+  }
+  .ns-button {
+	border: 0;
+	border-radius: 3px;
+	color: var(--Button-Primary-Text);
+	cursor: pointer;
+	min-width: 100px;
+	padding: var(--Button-Medium-Padding);
+  }
+  .ns-button-large {
+	font: var(--Button-Font-Large);
+	height: var(--Button-Large-Height);
+	min-width: 120px;
+	padding: var(--Button-Large-Padding);
+  }
+  .ns-button-primary {
+	background-color: var(--Button-Primary-Background);
+  }
+  .ns-button-primary:hover {
+	background-color: var(--Button-Primary-Background-Hover);
+  }
+  .ns-button-primary:active {
+	background-color: var(--Button-Primary-Background-Pressed);
+  }
+  html:root {
+	--TextField-Label-Focused-Padding-Top: 16px;
+	--TextField-Label-Focused-Padding-Bottom: 2px;
+  }
+  html:root.theme-dark {
+	--TextField-Border: rgba(var(--UI0RGB), var(--Opacity6));
+	--TextField-Background: rgba(var(--UI0RGB), var(--Opacity8));
+	--TextField-Text: var(--Font-Primary);
+	--TextField-Placeholder: var(--Font-Tertiary);
+	--TextField-Label: var(--Font-Tertiary);
+	--TextField-Suffix: var(--Font-Tertiary);
+	--TextField-Border-Hover: rgba(var(--UI0RGB), var(--Opacity6));
+	--TextField-Background-Hover: rgba(var(--UI0RGB), var(--Opacity7));
+	--TextField-Border-Focused: rgba(var(--UI2RGB), var(--Opacity1));
+	--TextField-Background-Focused: rgba(var(--UI2RGB), var(--Opacity7));
+	--TextField-Text-Focused: rgba(var(--UI0RGB), var(--Opacity2));
+	--TextField-Label-Focused: rgba(var(--UI2RGB), var(--Opacity1));
+	--TextField-Placeholder-Focused: rgba(var(--UI2RGB), var(--Opacity1));
+	--TextField-Suffix-Focused: rgba(var(--UI0RGB), var(--Opacity3));
+  }
+  html:root.theme-dark {
+	--TextField-Border-Disabled: rgba(var(--UI0RGB), var(--Opacity7));
+	--TextField-Background-Disabled: rgba(var(--UI0RGB), var(--Opacity8));
+	--TextField-Text-Disabled: var(--Font-Primary-Disabled);
+	--TextField-Placeholder-Disabled: var(--Font-Tertiary-Disabled);
+	--TextField-Label-Disabled: rgba(var(--UI0RGB), var(--Opacity7));
+	--TextField-Suffix-Disabled: rgba(var(--UI0RGB), var(--Opacity7));
+  }
+  .ns-textfield-wrap {
+	display: inline-flex;
+	height: 40px;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+  }
+  .ns-textfield-icon-wrap {
+	display: inline-block;
+	height: 16px;
+	position: absolute;
+	top: 11px;
+	vertical-align: top;
+	width: 16px;
+  }
+  .ns-textfield {
+	background-color: var(--TextField-Background);
+	border: 1px solid var(--TextField-Border);
+	border-radius: 2px;
+	box-sizing: border-box;
+	color: var(--TextField-Text);
+	font: var(--Font-Scale-Body2);
+	outline: 0;
+	padding: 9px 11px;
+	width: 100%;
+  }
+  .ns-textfield::-webkit-input-placeholder {
+	color: var(--TextField-Placeholder);
+	font: var(--Font-Scale-Body2);
+  }
+  .ns-textfield:hover {
+	background-color: var(--TextField-Background-Hover);
+	border-color: var(--TextField-Border-Hover);
+  }
+  .ns-textfield:focus {
+	background-color: var(--TextField-Background-Focused);
+	border-color: var(--TextField-Border-Focused);
+  }
+  .ns-textfield.ns-textfield-start-icon {
+	padding-left: 37px;
+  }
+  .ns-textfield.ns-textfield-start-icon ~ .ns-textfield-icon-wrap.start {
+	left: 11px;
+  }
+  .ns-textfield-icon-wrap {
+	pointer-events: none;
+  }
+  html:root.theme-dark {
+	--ComboBox-Dropdown-Background: rgba(var(--Base4RGB), var(--Opacity1));
+	--ComboBox-Dropdown-Border: rgba(var(--UI0RGB), var(--Opacity6));
+	--ComboBox-Dropdown-Shadow: var(--BoxShadow1);
+  }
+  html.theme-dark:root {
+	--CheckBox-Unchecked-Icon: rgba(var(--UI0RGB), var(--Opacity4));
+	--CheckBox-Unchecked-Hover-Icon: rgba(var(--UI0RGB), var(--Opacity3));
+	--CheckBox-Unchecked-Disabled-Icon: rgba(var(--UI0RGB), var(--Opacity6));
+	--CheckBox-Unchecked-Text: var(--Font-Secondary);
+	--CheckBox-Unchecked-Hover-Text: var(--Font-Secondary);
+	--CheckBox-Unchecked-Disabled-Text: var(--Font-Secondary-Disabled);
+	--CheckBox-Checked-Icon: rgba(var(--UI1RGB), var(--Opacity1));
+	--CheckBox-Checked-Hover-Icon: rgba(var(--UI2RGB), var(--Opacity1));
+	--CheckBox-Checked-Disabled-Icon: rgba(var(--UI1RGB), var(--Opacity6));
+	--CheckBox-Checked-Text: var(--Font-Secondary);
+	--CheckBox-Checked-Hover-Text: var(--Font-Secondary);
+	--CheckBox-Checked-Disabled-Text: var(--Font-Secondary-Disabled);
+	--CheckBox-Multichecked-Icon: rgba(var(--UI1RGB), var(--Opacity1));
+	--CheckBox-Multichecked-Hover-Icon: rgba(var(--UI2RGB), var(--Opacity1));
+	--CheckBox-Multichecked-Disabled-Icon: rgba(var(--UI1RGB), var(--Opacity6));
+	--CheckBox-Multichecked-Text: var(--Font-Secondary);
+	--CheckBox-Multichecked-Hover-Text: var(--Font-Secondary);
+	--CheckBox-Multichecked-Disabled-Text: var(--Font-Secondary-Disabled);
+	--CheckBox-Font: var(--Font-Scale-Body2);
+  }
+  html:root {
+	--Tooltip-Font: var(--Font-Scale-Body3);
+	--Tooltip-Shadow: var(--BoxShadow1);
+	--Tooltip-Max-Width: 230px;
+  }
+  html:root.theme-dark {
+	--Tooltip-Background: rgba(var(--UI5RGB), var(--Opacity1));
+	--Tooltip-Text: var(--Font-Primary);
+  }
+  html.theme-dark:root {
+	--Icon-Default: rgba(var(--UI0RGB), var(--Opacity1));
+	--Icon-Default-Red: rgba(var(--RedRGB), var(--Opacity1));
+	--Icon-Default-Yellow: rgba(var(--YellowRGB), var(--Opacity1));
+	--Icon-Default-Green: rgba(var(--GreenRGB), var(--Opacity1));
+  }
+  html.theme-dark:root {
+	--RadioBox-Unselected-Icon: rgba(var(--UI0RGB), var(--Opacity4));
+	--RadioBox-Unselected-Hover-Icon: rgba(var(--UI0RGB), var(--Opacity3));
+	--RadioBox-Unselected-Disabled-Icon: rgba(var(--UI0RGB), var(--Opacity6));
+	--RadioBox-Unselected-Text: var(--Font-Secondary);
+	--RadioBox-Unselected-Hover-Text: var(--Font-Secondary);
+	--RadioBox-Unselected-Disabled-Text: var(--Font-Secondary-Disabled);
+	--RadioBox-Selected-Icon: rgba(var(--UI1RGB), var(--Opacity1));
+	--RadioBox-Selected-Hover-Icon: rgba(var(--UI2RGB), var(--Opacity1));
+	--RadioBox-Selected-Disabled-Icon: rgba(var(--UI1RGB), var(--Opacity6));
+	--RadioBox-Selected-Text: var(--Font-Secondary);
+	--RadioBox-Selected-Hover-Text: var(--Font-Secondary);
+	--RadioBox-Selected-Disabled-Text: var(--Font-Secondary-Disabled);
+	--Radio-Font: var(--Font-Scale-Body2);
+  }
+  html.theme-dark:root {
+	--ToggleSwitch-Unchecked-Thumb: rgba(var(--BaseWhiteRGB), var(--Opacity1));
+	--ToggleSwitch-Unchecked-Hover-Thumb: rgba(
+	  var(--BaseWhiteRGB),
+	  var(--Opacity1)
+	);
+	--ToggleSwitch-Unchecked-Disabled-Thumb: rgba(
+	  var(--BaseWhiteRGB),
+	  var(--Opacity6)
+	);
+	--ToggleSwitch-Unchecked-Background: rgba(var(--UI0RGB), var(--Opacity5));
+	--ToggleSwitch-Unchecked-Hover-Background: rgba(
+	  var(--UI0RGB),
+	  var(--Opacity4)
+	);
+	--ToggleSwitch-Unchecked-Disabled-Background: rgba(
+	  var(--UI0RGB),
+	  var(--Opacity7)
+	);
+	--ToggleSwitch-Unchecked-Text: var(--Font-Secondary);
+	--ToggleSwitch-Unchecked-Hover-Text: var(--Font-Secondary);
+	--ToggleSwitch-Unchecked-Disabled-Text: var(--Font-Secondary-Disabled);
+	--ToggleSwitch-Checked-Thumb: rgba(var(--BaseWhiteRGB), var(--Opacity1));
+	--ToggleSwitch-Checked-Hover-Thumb: rgba(
+	  var(--BaseWhiteRGB),
+	  var(--Opacity1)
+	);
+	--ToggleSwitch-Checked-Disabled-Thumb: rgba(
+	  var(--BaseWhiteRGB),
+	  var(--Opacity6)
+	);
+	--ToggleSwitch-Checked-Background: rgba(var(--UI1RGB), var(--Opacity1));
+	--ToggleSwitch-Checked-Hover-Background: rgba(var(--UI2RGB), var(--Opacity1));
+	--ToggleSwitch-Checked-Disabled-Background: rgba(
+	  var(--UI1RGB),
+	  var(--Opacity6)
+	);
+	--ToggleSwitch-Checked-Text: var(--Font-Secondary);
+	--ToggleSwitch-Checked-Hover-Text: var(--Font-Secondary);
+	--ToggleSwitch-Checked-Disabled-Text: var(--Font-Secondary-Disabled);
+	--ToggleSwitch-Font: var(--Font-Scale-Body2);
+  }
+  html.theme-dark:root {
+	--Expander-HeaderBackground: rgba(var(--Base3RGB), var(--Opacity1));
+	--Expander-Hover-HeaderBackground: rgba(var(--Base2RGB), var(--Opacity1));
+	--Expander-Pressed-HeaderBackground: rgba(var(--Base3RGB), var(--Opacity1));
+	--Expander-Disabled-HeaderBackground: rgba(var(--Base3RGB), var(--Opacity1));
+	--Expander-HeaderText: var(--Font-Secondary);
+	--Expander-Hover-HeaderText: var(--Font-Secondary);
+	--Expander-Pressed-HeaderText: var(--Font-Secondary);
+	--Expander-Disabled-HeaderText: var(--Font-Secondary-Disabled);
+	--Expander-HeaderIcon: rgba(var(--UI0RGB), var(--Opacity3));
+	--Expander-Hover-HeaderIcon: rgba(var(--UI0RGB), var(--Opacity3));
+	--Expander-Pressed-HeaderIcon: rgba(var(--UI0RGB), var(--Opacity3));
+	--Expander-Disabled-HeaderIcon: rgba(var(--UI0RGB), var(--Opacity7));
+	--Expander-HeaderFont: var(--Font-Scale-Header3);
+	--Expander-BottomBorder: rgba(var(--UI0RGB), var(--Opacity6));
+  }
+  html.theme-dark:root {
+	--Slider-Background: rgba(var(--UI0RGB), var(--Opacity5));
+	--Slider-Hover-Background: rgba(var(--UI0RGB), var(--Opacity5));
+	--Slider-Pressed-Background: rgba(var(--UI0RGB), var(--Opacity5));
+	--Slider-Disabled-Background: rgba(var(--UI0RGB), var(--Opacity7));
+	--Slider-SelectionBar: rgba(var(--UI1RGB), var(--Opacity1));
+	--Slider-Hover-SelectionBar: rgba(var(--UI1RGB), var(--Opacity1));
+	--Slider-Pressed-SelectionBar: rgba(var(--UI1RGB), var(--Opacity1));
+	--Slider-Disabled-SelectionBar: rgba(var(--UI1RGB), var(--Opacity7));
+	--Slider-ThumbBackground: rgba(var(--Base4RGB), var(--Opacity1));
+	--Slider-Hover-ThumbBackground: rgba(var(--Base4RGB), var(--Opacity1));
+	--Slider-Pressed-ThumbBackground: rgba(var(--Base4RGB), var(--Opacity1));
+	--Slider-Disabled-ThumbBackground: rgba(var(--Base4RGB), var(--Opacity1));
+	--Slider-ThumbLine: rgba(var(--UI4RGB), var(--Opacity1));
+	--Slider-Hover-ThumbLine: rgba(var(--UI2RGB), var(--Opacity1));
+	--Slider-Pressed-ThumbLine: rgba(var(--UI3RGB), var(--Opacity1));
+	--Slider-Disabled-ThumbLine: rgba(var(--UI4RGB), var(--Opacity6));
+	--Slider-MinMax: var(--Font-Secondary);
+	--Slider-Hover-MinMax: var(--Font-Secondary);
+	--Slider-Pressed-MinMax: var(--Font-Secondary);
+	--Slider-Disabled-MinMax: var(--Font-Secondary);
+	--Slider-Snap: rgba(var(--UI0RGB), var(--Opacity3));
+	--Slider-Hover-Snap: rgba(var(--UI0RGB), var(--Opacity3));
+	--Slider-Pressed-Snap: rgba(var(--UI0RGB), var(--Opacity3));
+	--Slider-Disabled-Snap: rgba(var(--UI0RGB), var(--Opacity3));
+	--Slider-Label: var(--Font-Secondary);
+	--Slider-Hover-Label: var(--Font-Secondary);
+	--Slider-Pressed-Label: var(--Font-Secondary);
+	--Slider-Disabled-Label: var(--Font-Secondary);
+	--Slider-Font: var(--Font-Scale-Body3);
+  }
+  html.theme-dark:root {
+	--Pagination-Hover-Background: rgba(var(--UI0RGB), var(--Opacity8));
+	--Pagination-Pressed-Background: rgba(var(--UI0RGB), var(--Opacity7));
+	--Pagination-Selected-Disabled-Background: rgba(
+	  var(--UI0RGB),
+	  var(--Opacity8)
+	);
+	--Pagination-Text: var(--Font-Secondary);
+	--Pagination-Pressed-Text: var(--Font-Secondary);
+	--Pagination-Selected-Disabled-Text: var(--Font-Secondary);
+	--Pagination-Disabled-Text: var(--Font-Secondary-Disabled);
+	--Pagination-Icon: rgba(var(--UI0RGB), var(--Opacity3));
+	--Pagination-Pressed-Icon: rgba(var(--UI0RGB), var(--Opacity3));
+	--Pagination-Selected-Disabled-Icon: rgba(var(--UI0RGB), var(--Opacity7));
+	--Pagination-Disabled-Icon: rgba(var(--UI0RGB), var(--Opacity6));
+	--Pagination-Font: var(--Font-Scale-Body1);
+  }
+  html.theme-dark:root {
+	--DataGrid-ColumnHeader-Backgroud: rgba(var(--UI0RGB), var(--Opacity8));
+	--DataGrid-ColumnHeader-TopBorder: 1px solid
+	  rgba(var(--UI0RGB), var(--Opacity6));
+	--DataGrid-ColumnHeader-Text: var(--Font-Tertiary);
+	--DataGrid-ColumnHeader-Disabled-Text: var(--Font-Tertiary-Disabled);
+	--DataGrid-ColumnHeader-Icon: rgba(var(--UI0RGB), var(--Opacity3));
+	--DataGrid-ColumnHeader-Divider: rgba(var(--UI0RGB), var(--Opacity6));
+	--DataGrid-ColumHeader-Resize-Handle: rgba(var(--UI0RGB), var(--Opacity6));
+	--DataGrid-ColumnHeader-Font: var(--Font-Scale-Body3);
+	--DataGrid-ColumnHeader-Font-Color: var(--Font-Tertiary);
+	--DataGrid-ColumnHeader-Font-Weight: var(--Font-Weight-Bold);
+	--DataGrid-Cell-BottomBorder: 1px solid rgba(var(--UI0RGB), var(--Opacity7));
+	--DataGrid-Cell-BottomBorder-Last: 1px solid
+	  rgba(var(--UI0RGB), var(--Opacity6));
+	--DataGrid-Cell-Background: transparent;
+	--DataGrid-Cell-Hover-Background: rgba(var(--UI0RGB), var(--Opacity8));
+	--DataGrid-Cell-Selected-Background: rgba(var(--UI3RGB), var(--Opacity7));
+	--DataGrid-Cell-Selected-Border: rgba(var(--UI3RGB), var(--Opacity1));
+	--DataGrid-Cell-Text: var(--Font-Primary);
+	--DataGrid-Cell-Disabled-Text: var(--Font-Primary-Disabled);
+	--DataGrid-Cell-Font: var(--Font-Scale-Body2);
+	--DataGrid-Cell-Font-Color: var(--Font-Primary);
+	--DataGrid-Cell-Font-Weight: var(--Font-Weight-Default);
+	--DataGrid-checkOff-Icon: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='16' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M28 4H4v24h24V4ZM4 2a2 2 0 0 0-2 2v24a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4Z' fill='%23ffffff66'/%3E%3C/svg%3E");
+  }
+  html:root {
+	--Modal-Backdrop-Background-Transparent: rgba(var(--BaseBlackRGB), 0);
+  }
+  html:root.theme-dark {
+	--Modal-Backdrop-Background: rgba(var(--BaseBlackRGB), var(--Opacity5));
+  }
+  html:root {
+	--Modal-Shadow: var(--BoxShadow2);
+	--Modal-Header-Font: var(--Font-Scale-Header1);
+	--Modal-Content-Font: var(--Font-Scale-Body1);
+	--Modal-Header-Padding: 24px 24px 20px 24px;
+	--Modal-Icon-Header-Padding: 24px 24px 20px 56px;
+	--Modal-Close-Header-Padding: 24px 54px 20px 24px;
+	--Modal-Close-Icon-Header-Padding: 24px 54px 20px 56px;
+	--Modal-Content-Padding: 24px 24px 0px 24px;
+	--Modal-Title-Content-Padding: 20px 24px 0px 24px;
+	--Modal-Icon-Content-Padding: 24px 24px 0px 64px;
+	--Modal-Close-Content-Padding: 24px 54px 0px 24px;
+	--Modal-Close-Icon-Content-Padding: 24px 54px 0px 64px;
+	--Modal-Footer-Padding: 20px 24px 24px 24px;
+	--Modal-Title-Footer-Padding: 20px 24px 24px 24px;
+  }
+  html:root.theme-dark {
+	--Modal-Background: var(--Base4);
+	--Modal-Text: var(--Font-Secondary);
+	--Modal-Header-Border-Bottom: var(--Divider-Background);
+  }
+  html:root {
+	--Popover-Contents-Padding: 20px;
+  }
+  html:root.theme-dark {
+	--Popover-Background: var(--Base4);
+	--Popover-Shadow: var(--BoxShadow1);
+	--Popover-Border: rgba(var(--UI0RGB), var(--Opacity6));
+  }
+  html:root {
+	--Datepicker-Font: var(--Font-Scale-Micro1);
+	--Datepicker-Header-Font: var(--Font-Scale-Body3);
+	--Datepicker-Text: var(--Font-Secondary);
+	--Datepicker-Font-Active: var(--Font-Scale-Header4);
+	--Datepicker-Active-Text: rgba(var(--UI0RGB), var(--Opacity1));
+	--Datepicker-Date-Hover: rgba(var(--UI0RGB), var(--Opacity7));
+	--Datepicker-Today-Border: rgba(var(--UI1RGB), var(--Opacity1));
+	--Datepicker-Active-Background: rgba(var(--UI1RGB), var(--Opacity1));
+	--Datepicker-Disabled-Text: var(--Font-Secondary-Disabled);
+	--Datepicker-Active-Disabled-Text: var(--Font-White-Disabled);
+	--Datepicker-Active-Disabled-Background: rgba(var(--UI1RGB), var(--Opacity6));
+	--Datepicker-Other-Text: var(--Font-Tertiary);
+  }
+  html:root.theme-dark {
+	--Datepicker-Background: rgba(var(--Base4RGB), var(--Opacity6));
+	--Datepicker-Icon-Svg: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='16' viewBox='0 0 32 32' fill='%23fff' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M22.116 16.23a.666.666 0 0 1-.16.253l-9.464 9.321a.666.666 0 0 1-.944 0l-1.15-1.132a.642.642 0 0 1 0-.93l7.857-7.737-7.918-7.798a.556.556 0 0 1 0-.813l1.238-1.22a.576.576 0 0 1 .826 0l7.918 7.798.015-.015 1.622 1.597c.1.087.162.204.187.329a.54.54 0 0 1-.027.348Z'/%3E%3C/svg%3E");
+	--Datepicker-Active-Text: rgba(var(--BaseWhiteRGB), var(--Opacity1));
+  }
+  html:root {
+	--ToastMessage-Info-Background: var(--Blue);
+	--ToastMessage-Success-Background: var(--Green);
+	--ToastMessage-Error-Background: var(--Red);
+	--ToastMessage-Warning-Background: var(--Yellow);
+	--ToastMessage-Font: var(--Font-Scale-Body2);
+	--ToastMessage-Text: var(--Font-White);
+	--ToastMessage-Icon: rgba(var(--BaseWhiteRGB), var(--Opacity2));
+	--ToastMessage-Button: var(--BaseWhite);
+	--ToastMessage-Text-Disabled: var(--Font-White-Disabled);
+	--ToastMessage-Shadow: var(--BoxShadow1);
+  }
+  html:root {
+	--Dropdown-XSmall-Padding: 4px 10px 3px 10px;
+	--Dropdown-Small-Padding: 6px 10px;
+	--Dropdown-Medium-Padding: 10px 16px;
+	--Dropdown-Large-Padding: 16px;
+	--Dropdown-XSmall-Icon-Padding: 4.5px 10px 3.5px 11px;
+	--Dropdown-Small-Icon-Padding: 6px 10px 6px 11px;
+	--Dropdown-Medium-Icon-Padding: 10px 16px 10px 17px;
+	--Dropdown-Large-Icon-Padding: 16px 16px 16px 17.5px;
+	--Dropdown-XSmall-Icon-No-Label-Padding: 4px;
+	--Dropdown-Small-Icon-No-Label-Padding: 6px 8px;
+	--Dropdown-Medium-Icon-No-Label-Padding: 10px 12px;
+	--Dropdown-Large-Icon-No-Label-Padding: 16px 15px;
+	--Dropdown-Tertiary-XSmall-Padding: 3px 9px 2px 9px;
+	--Dropdown-Tertiary-Small-Padding: 5px 9px;
+	--Dropdown-Tertiary-Medium-Padding: 9px 15px;
+	--Dropdown-Tertiary-Large-Padding: 15px;
+	--Dropdown-Tertiary-XSmall-Icon-Padding: 3.5px 9px 2.5px 10px;
+	--Dropdown-Tertiary-Small-Icon-Padding: 5px 9px 5px 10px;
+	--Dropdown-Tertiary-Medium-Icon-Padding: 9px 15px 9px 16px;
+	--Dropdown-Tertiary-Large-Icon-Padding: 15px 15px 15px 16.5px;
+	--Dropdown-Tertiary-XSmall-Icon-No-Label-Padding: 3px;
+	--Dropdown-Tertiary-Small-Icon-No-Label-Padding: 5px 7px;
+	--Dropdown-Tertiary-Medium-Icon-No-Label-Padding: 9px 11px;
+	--Dropdown-Tertiary-Large-Icon-No-Label-Padding: 15px 14px;
+	--Dropdown-Item-Padding: 8px 12px;
+	--Dropdown-Item-Font: var(--Font-Scale-Body2);
+  }
+  html:root.theme-dark {
+	--Dropdown-Background: rgba(var(--Base4RGB), var(--Opacity1));
+	--Dropdown-Border: rgba(var(--UI0RGB), var(--Opacity6));
+	--Dropdown-Shadow: var(--BoxShadow1);
+	--Dropdown-Item-Background: var(--Transparent);
+	--Dropdown-Item-Hover: rgba(var(--UI0RGB), var(--Opacity8));
+	--Dropdown-Item-Focused: rgba(var(--UI0RGB), var(--Opacity6));
+	--Dropdown-Item-Disabled: var(--Transparent);
+	--Dropdown-Item-Selected: rgba(var(--UI0RGB), var(--Opacity7));
+	--Dropdown-Item-Selected-Disabled: rgba(var(--UI0RGB), var(--Opacity8));
+	--Dropdown-Item-Text: var(--Font-Secondary);
+	--Dropdown-Item-Text-Disabled: var(--Font-Secondary-Disabled);
+  }
+  body,
+  html {
+	color: var(--Font-Secondary);
+	font: var(--Font-Scale-Body2);
+	height: 100vh;
+	margin: 0;
+	min-height: 768px;
+	min-width: 1300px;
+	overflow: auto;
+	padding: 0;
+	width: 100vw;
+  }
+  body *,
+  html * {
+	box-sizing: border-box;
+  }
+  html:root {
+	--ComboBox-Selected-Icon: url(https://neurophet-stroke.github.io/static/media/icon_select.9d93686e7a90e93a0f6c.svg);
+  }
+  html:root.theme-dark {
+	--ctp-Support1: #b75919;
+	--ctp-Support2: #e8993c;
+	--ctp-Support3: #feddbb;
+	--ctp-Percentile-Score0: var(--ctp-Support3);
+	--ctp-Percentile-Score1: var(--ctp-Support2);
+	--ctp-Percentile-Score2: var(--ctp-Support1);
+	--ctp-Percentile-Score0-Text: rgba(var(--BaseBlackRGB), var(--Opacity2));
+	--ctp-Percentile-Score1-Text: var(--BaseBlack);
+	--ctp-Percentile-Score2-Text: var(--Font-White);
+	--ctp-DataGrid-Row-Selected-Border: var(--UI3);
+	--ctp-DataGrid-Row-Selected-Background: rgba(var(--UI3RGB), var(--Opacity6));
+	background-color: var(--Base4);
+  }
