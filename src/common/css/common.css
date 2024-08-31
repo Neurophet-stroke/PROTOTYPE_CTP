@@ -2,37 +2,6 @@ html:root {
 	--Form-Label-Font: var(--Font-Scale-Body2);
 	--Form-Icon-Required-Font: var(--Font-Scale-Header3);
 	--font-family: Spoqa Han Sans Neo, sans-serif;
-  }
-  html:root.theme-dark {
-	--Form-Label: var(--Font-Secondary);
-	--Form-Icon-Required: var(--Font-Highlight);
-  }
-  html:root {
-	--ctp-TextField-Invalid-Error-Text: var(--Red);
-	--ctp-TextField-Invalid-Error-Border: var(--Red);
-	--ctp-TextField-Invalid-Warning-Text: var(--Yellow);
-	--ctp-TextField-Invalid-Warning-Border: var(--Yellow);
-	--ctp-TextField-Invalid-Pass-Text: var(--Green);
-	--ctp-TextField-Invalid-Pass-Border: var(--Green);
-  }
-  html:root.theme-dark {
-	--Footer-Background: var(--Base1);
-	--Footer-Color: var(--Font-Tertiary);
-	--Footer-Divider: rgba(var(--UI0RGB), var(--Opacity5));
-  }
-  html:root {
-	--Tab-Item-Padding: 8px 24px 7px;
-  }
-  html:root.theme-dark {
-	--Tab-Border: rgba(var(--UI0RGB), var(--Opacity6));
-  } 
-  html:root.theme-dark {
-	--User-Popover-Color: var(--Font-Secondary);
-	--User-Popover-Sub-Color: var(--Font-Tertiary);
-	--User-Level: rgba(var(--UI0RGB), var(--Opacity7));
-	--User-Level-Font: var(--Font-Tertiary);
-  }
-  html:root {
 	--Font-Weight-Light: 300;
 	--Font-Weight-Default: 400;
 	--Font-Weight-Medium: 500;
@@ -52,6 +21,30 @@ html:root {
 	--Font-Scale-Body3: var(--Font-Weight-Default) 12px/1.4 "Spoqa Han Sans Neo";
 	--Font-Scale-Micro1: var(--Font-Weight-Default) 10px/1.4 "Spoqa Han Sans Neo";
   }
+  html:root.theme-dark {
+	--Form-Label: var(--Font-Secondary);
+	--Form-Icon-Required: var(--Font-Highlight);
+  }
+  html:root {
+	--ctp-TextField-Invalid-Error-Text: var(--Red);
+	--ctp-TextField-Invalid-Error-Border: var(--Red);
+	--ctp-TextField-Invalid-Warning-Text: var(--Yellow);
+	--ctp-TextField-Invalid-Warning-Border: var(--Yellow);
+	--ctp-TextField-Invalid-Pass-Text: var(--Green);
+	--ctp-TextField-Invalid-Pass-Border: var(--Green); 
+	--Tab-Item-Padding: 8px 24px 7px;
+  }
+  html:root.theme-dark {
+	--Footer-Background: var(--Base1);
+	--Footer-Color: var(--Font-Tertiary);
+	--Footer-Divider: rgba(var(--UI0RGB), var(--Opacity5)); 
+	--Tab-Border: rgba(var(--UI0RGB), var(--Opacity6)); 
+	--User-Popover-Color: var(--Font-Secondary);
+	--User-Popover-Sub-Color: var(--Font-Tertiary);
+	--User-Level: rgba(var(--UI0RGB), var(--Opacity7));
+	--User-Level-Font: var(--Font-Tertiary);
+  }
+
   html.theme-dark:root {
 	--Base0: #0a0a0a;
 	--Base0RGB: 10, 10, 10;
