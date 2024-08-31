@@ -6,8 +6,185 @@
 	<title>SCALE CTP_MAIN</title>
 	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
 	<style>
+	.svg-highlight {
+		color: #9b59b6;
+		/* 보라색 */
+		background-color: rgba(155, 89, 182, 0.1);
+		/* 보라색 배경색 */
+		border-radius: 4px;
+		/* 둥근 모서리 */
+		padding: 4px;
+		/* 아이콘 주변 여백 */
+		box-shadow: 0 0 8px rgba(155, 89, 182, 0.5);
+		/* 보라색 그림자 */
+		transition: all 0.3s ease;
+		/* 애니메이션 효과 */
+		animation: sparkle 1.5s infinite;
+		/* 반짝이는 애니메이션 */
+	}
+
+	.svg-highlight:hover {
+		color: #ffffff;
+		/* 마우스 오버 시 색상 변화 */
+		background-color: rgba(155, 89, 182, 0.2);
+		/* 마우스 오버 시 배경색 변화 */
+		transform: scale(1.2);
+		/* 크기 증가 */
+		box-shadow: 0 0 12px rgba(155, 89, 182, 0.7);
+		/* 보라색 그림자 강화 */
+		animation: sparkle 1s infinite;
+		/* 마우스 오버 시 반짝이는 애니메이션 속도 변경 */
+	}
+
+	@keyframes sparkle {
+		0% {
+			box-shadow: 0 0 8px rgba(155, 89, 182, 0.5);
+			/* 기본 보라색 그림자 */
+			transform: scale(1);
+			/* 기본 크기 */
+		}
+
+		50% {
+			box-shadow: 0 0 16px rgba(155, 89, 182, 0.8);
+			/* 강화된 보라색 그림자 */
+			transform: scale(1.1);
+			/* 약간의 확대 */
+		}
+
+		100% {
+			box-shadow: 0 0 8px rgba(155, 89, 182, 0.5);
+			/* 기본 보라색 그림자 */
+			transform: scale(1);
+			/* 기본 크기 */
+		}
+	}
+
 	* {
 		box-sizing: border-box;
+	}
+
+	.access-bar-item,
+	.access-bar-item * {
+		box-sizing: border-box;
+	}
+
+	.access-bar-item {
+		background: var(--comp-color-accessbaritem-basic-background-normal,
+				rgba(0, 0, 0, 0));
+		padding: 4px 12px 4px 12px;
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+		align-items: center;
+		justify-content: flex-start;
+		flex-shrink: 0;
+		min-height: 48px;
+		position: relative;
+	}
+
+	.access-bar-item2 {
+		color: var(--comp-white-foreground-normal, #ffffff);
+		text-align: left;
+		font-family: var(--sys-typography-style-body3-font-family,
+				"SpoqaHanSansNeo-Regular",
+				sans-serif);
+		font-size: var(--sys-typography-style-body3-font-size, 14px);
+		font-weight: var(--sys-typography-style-body3-font-weight, 400);
+		position: relative;
+	}
+
+	/* variant styles */
+	.access-bar-item.state-normal .access-bar-item,
+	.access-bar-item:hover .access-bar-item,
+	.access-bar-item.state-hover .access-bar-item {
+		color: var(--comp-white-foreground-normal, #ffffff);
+		text-align: left;
+		font-family: var(--sys-typography-style-body3-font-family,
+				"SpoqaHanSansNeo-Regular",
+				sans-serif);
+		font-size: var(--sys-typography-style-body3-font-size, 14px);
+		font-weight: var(--sys-typography-style-body3-font-weight, 400);
+		background: unset;
+		padding: unset;
+		display: block;
+		flex-direction: unset;
+		gap: unset;
+		align-items: unset;
+		justify-content: unset;
+		flex-shrink: unset;
+		min-height: unset;
+	}
+
+	.access-bar-item:hover,
+	.access-bar-item.state-hover,
+	.access-bar-item.state-selected-disabled {
+		background: rgba(255, 255, 255, 0.05);
+	}
+
+	.access-bar-item.state-selected {
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	.access-bar-item.state-selected .access-bar-item {
+		color: var(--comp-white-foreground-normal, #ffffff);
+		text-align: left;
+		font-family: var(--sys-typography-style-header3-font-family,
+				"SpoqaHanSansNeo-Bold",
+				sans-serif);
+		font-size: var(--sys-typography-style-header3-font-size, 14px);
+		font-weight: var(--sys-typography-style-header3-font-weight, 700);
+		background: unset;
+		padding: unset;
+		display: block;
+		flex-direction: unset;
+		gap: unset;
+		align-items: unset;
+		justify-content: unset;
+		flex-shrink: unset;
+		min-height: unset;
+	}
+
+	.access-bar-item.state-selected-disabled .access-bar-item {
+		color: var(--comp-white-foreground-disabled, rgba(255, 255, 255, 0.2));
+		text-align: left;
+		font-family: var(--sys-typography-style-header3-font-family,
+				"SpoqaHanSansNeo-Bold",
+				sans-serif);
+		font-size: var(--sys-typography-style-header3-font-size, 14px);
+		font-weight: var(--sys-typography-style-header3-font-weight, 700);
+		background: unset;
+		padding: unset;
+		display: block;
+		flex-direction: unset;
+		gap: unset;
+		align-items: unset;
+		justify-content: unset;
+		flex-shrink: unset;
+		min-height: unset;
+	}
+
+	.access-bar-item.state-disabled {
+		background: var(--comp-color-accessbaritem-basic-background-disabled,
+				rgba(0, 0, 0, 0));
+	}
+
+	.access-bar-item.state-disabled .access-bar-item {
+		color: var(--comp-white-foreground-disabled, rgba(255, 255, 255, 0.2));
+		text-align: left;
+		font-family: var(--sys-typography-style-body3-font-family,
+				"SpoqaHanSansNeo-Regular",
+				sans-serif);
+		font-size: var(--sys-typography-style-body3-font-size, 14px);
+		font-weight: var(--sys-typography-style-body3-font-weight, 400);
+		background: unset;
+		padding: unset;
+		display: block;
+		flex-direction: unset;
+		gap: unset;
+		align-items: unset;
+		justify-content: unset;
+		flex-shrink: unset;
+		min-height: unset;
 	}
 
 	html,
@@ -821,7 +998,8 @@
 
 	.text-white\/90 {
 		color: rgb(255 255 255 / 0.9)
-	}</style>
+	}
+	</style>
 </head>
 
 <body>
@@ -840,10 +1018,19 @@
 						<div class="flex justify-between items-center self-stretch flex-grow-0 flex-shrink-0">
 							<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-3">
 								<!-- dicom -->
-								<div class="flex justify-center items-center flex-grow-0 flex-shrink-0 h-10 relative gap-1.5 px-4 rounded-[3px] bg-[#0277fe]">
-									<p class="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-white"> Upload DICOM Image </p>
-								</div>
-								<!-- divider -->
+								<button style="
+								display: flex;
+								align-items: center;
+								height: 40px;
+								padding: 0 16px;
+								border-radius: 3px;
+								background-color: #0277fe;
+								color: white;
+								font-size: 14px;
+								font-weight: bold;
+								border: none;
+								cursor: pointer;
+							"> Upload DICOM Image </button> <!-- divider -->
 								<div class="flex-grow-0 flex-shrink-0 w-px h-10 relative bg-white/20"></div>
 								<!-- patient id -->
 								<div class="flex flex-col justify-center items-start flex-grow-0 flex-shrink-0 h-10 w-[300px] overflow-hidden px-3 py-2.5 rounded-sm bg-[#1e1e1e] border border-white/30">
@@ -879,7 +1066,7 @@
 								</div>
 							</div>
 							<div class="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-3">
-								<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white/60"> Display Items: 0 </p>
+								<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white/60"> Display Items: 1 </p>
 							</div>
 						</div>
 						<div class="flex flex-col justify-start items-start self-stretch flex-grow relative overflow-hidden px-2 py-1 rounded-[3px] bg-[#383838] border border-white/10">
@@ -972,14 +1159,11 @@
 									<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-20 relative gap-1.5 px-2.5 py-1 bg-transparent">
 										<p class="flex-grow w-[60px] text-sm text-left text-white">Auto</p>
 									</div>
+									<!-- 뷰어아이콘 -->
 									<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 w-[120px] relative gap-3 px-2.5 py-1">
-										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative" preserveAspectRatio="xMidYMid meet">
-											<g opacity="0.6">
-												<path fill-rule="evenodd" clip-rule="evenodd" d="M15 1.5H1V12.5H6.5V14H4V15H12V14H9.5V12.5H15V1.5ZM14 2.5H2V10.5H14V2.5Z" fill="white"></path>
-											</g>
-										</svg><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative" preserveAspectRatio="xMidYMid meet">
-											<g opacity="0.6">
-												<path fill-rule="evenodd" clip-rule="evenodd" d="M6.5 2.5H9.5V4H6.5V2.5ZM5.5 4V2.5V1.5H6.5H9.5H10.5V2.5V4H12.5H13.5H14.5V5H13.5V13.5V14.5H12.5H3.5H2.5V13.5V5H1.5V4H2.5H3.5H5.5ZM3.5 5V13.5H12.5V5H10.5H9.5H6.5H5.5H3.5ZM6 6V12.5H5V6H6ZM7.5 6H8.5V12.5H7.5V6ZM10 6V12.5H11V6H10Z" fill="white"></path>
+										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative svg-highlight" preserveAspectRatio="xMidYMid meet">
+											<g opacity="0.9">
+												<path fill-rule="evenodd" clip-rule="evenodd" d="M15 1.5H1V12.5H6.5V14H4V15H12V14H9.5V12.5H15V1.5ZM14 2.5H2V10.5H14V2.5Z" fill="currentColor"></path>
 											</g>
 										</svg>
 									</div>
@@ -1214,16 +1398,16 @@
 				<div class="flex justify-start items-center flex-grow h-12">
 					<div class="flex justify-start items-center flex-grow-0 flex-shrink-0">
 						<!-- Analysis Link (Selected) -->
-						<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-3 py-1 bg-white/10 selected hover:bg-white/20 active:bg-white/30 transition-colors">
-							<p class="flex-grow-0 flex-shrink-0 text-sm font-bold text-left text-white">Analysis</p>
+						<div class="access-bar-item state-selected">
+							<p class="access-bar-item2">Analysis</p>
 						</div>
 						<!-- Transfer Link -->
-						<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-3 py-1 bg-transparent hover:bg-gray-700 active:bg-gray-800 transition-colors">
-							<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">Transfer</p>
+						<div class="access-bar-item state-normal hover">
+							<p class="access-bar-item2">Transfer</p>
 						</div>
 						<!-- Configuration Link -->
-						<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-3 py-1 bg-transparent hover:bg-gray-700 active:bg-gray-800 transition-colors">
-							<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">Configuration</p>
+						<div class="access-bar-item state-normal hover">
+							<p class="access-bar-item2">Configuration</p>
 						</div>
 					</div>
 				</div>
