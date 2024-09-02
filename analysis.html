@@ -1008,55 +1008,58 @@ html,
 </head>
 
 <body>
-	<div class="w-full relative">
-		<!-- accessbar -->
-		<div class="flex justify-between items-center w-full h-[60px] fixed left-0 top-0 px-5 bg-[#383838]" style="box-shadow: 0px 4px 8px rgba(0,0,0,0.3); z-index: 1000;">
-			<!-- Logo and Navigation -->
-			<div class="flex items-center flex-grow gap-5">
-				<!-- Logo Section -->
-				<a href="analysis.html"> 
-				<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[229px] h-[30px] relative gap-1">
-				<img src="src\assets\GNB_main-logo1.svg">
-				<img src="src\assets\GNB_main-logo2.svg">
-				</div>
-				</a>
-				<div class="flex items-center flex-grow h-12">
-						<div class="flex justify-start items-center flex-grow-0 flex-shrink-0">
-						<!-- Analysis Link (Selected) -->
-						<a href="analysis.html">							
-							<div class="access-bar-item state-selected">
-							<p class="access-bar-item2">Analysis</p>
-						</div>
-						</a>
-						<!-- Transfer Link -->
-						<div class="access-bar-item state-normal hover">
-							<p class="access-bar-item2">Transfer</p>
-						</div>
-						<!-- Configuration Link -->
-						<div class="access-bar-item state-normal hover">
-							<p class="access-bar-item2">Configuration</p>
-						</div>
-					</div>
-				</div>
-				<!-- User and Settings -->
-				<div class="flex items-center flex-grow-0 flex-shrink-0 h-12 relative gap-4">
-					<!-- Settings Icon -->
-					<img src="src\assets\notiicon.svg">
-					<img src="src\assets\settingicon.svg">
-					<!-- divider/name(ID) -->
-					<div class="flex-grow-0 flex-shrink-0 w-px h-4 bg-white/20"></div>
-					<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-3 py-1 bg-transparent">
-						<p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">KSIN2024_MKT</p>
-					<img src="src\assets\dropdown.svg">
-					</div>
-				</div>
-			</div>
-		</div>
-
-
+    <div class="w-full relative">
+        <!-- accessbar -->
+        <div class="flex justify-between items-center w-full h-[60px] fixed left-0 top-0 px-5 bg-[#383838]" style="box-shadow: 0px 4px 8px rgba(0,0,0,0.3); z-index: 1000;">
+            <!-- Logo and Navigation -->
+            <div class="flex items-center flex-grow gap-5">
+                <!-- Logo Section -->
+                <a href="analysis.html">
+                    <div class="flex justify-start items-center flex-grow-0 flex-shrink-0 w-[229px] h-[30px] relative gap-1">
+                        <img src="src/assets/GNB_main-logo1.svg" alt="Logo 1">
+                        <img src="src/assets/GNB_main-logo2.svg" alt="Logo 2">
+                    </div>
+                </a>
+                <div class="flex items-center flex-grow h-12">
+                    <div class="flex justify-start items-center flex-grow-0 flex-shrink-0">
+                        <!-- Analysis Link (Selected) -->
+                        <a href="analysis.html">
+                            <div class="access-bar-item state-selected">
+                                <p class="access-bar-item2">Analysis</p>
+                            </div>
+                        </a>
+                        <!-- Transfer Link -->
+                        <a href="transfer.html">
+                            <div class="access-bar-item state-normal hover">
+                                <p class="access-bar-item2">Transfer</p>
+                            </div>
+                        </a>
+                        <!-- Configuration Link -->
+                        <a href="configuration.html">
+                            <div class="access-bar-item state-normal hover">
+                                <p class="access-bar-item2">Configuration</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- User and Settings -->
+                <div class="flex items-center flex-grow-0 flex-shrink-0 h-12 relative gap-4">
+                    <!-- Settings Icon -->
+                    <img src="src/assets/notiicon.svg" alt="Notification Icon">
+                    <img src="src/assets/settingicon.svg" alt="Settings Icon">
+                    <!-- Divider/Name (ID) -->
+                    <div class="flex-grow-0 flex-shrink-0 w-px h-4 bg-white/20"></div>
+                    <div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2.5 px-3 py-1 bg-transparent">
+                        <p class="flex-grow-0 flex-shrink-0 text-sm text-left text-white">KSIN2024_MKT</p>
+                        <img src="src/assets/dropdown.svg" alt="Dropdown Icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 		<!-- contents -->
-		<div class="flex flex-col justify-start items-start w-full absolute left-0 top-12 overflow-hidden">
+		<div class="flex flex-col justify-start items-start w-full absolute left-0 top-12">
 			<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-2.5 pl-6 pr-2.5 pt-6 pb-4 bg-[#383838]">
 				<p class="flex-grow-0 flex-shrink-0 text-xl font-bold text-left text-white">Analysis</p>
 			</div>
@@ -1085,15 +1088,11 @@ html,
 								<!-- patient id -->
 								<div class="flex flex-col justify-center items-start flex-grow-0 flex-shrink-0 h-10 w-[300px] overflow-hidden px-3 py-2.5 rounded-sm bg-[#1e1e1e] border border-white/30">
 									<div class="flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-1.5">
-										<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-grow-0 flex-shrink-0 w-4 h-4 relative" preserveAspectRatio="xMidYMid meet">
-											<g opacity="0.6">
-												<path fill-rule="evenodd" clip-rule="evenodd" d="M9.89145 11.4568C9.01547 12.112 7.92805 12.5 6.75 12.5C3.85051 12.5 1.5 10.1495 1.5 7.25C1.5 4.35051 3.85051 2 6.75 2C9.6495 2 12 4.35051 12 7.25C12 8.42805 11.612 9.51547 10.9568 10.3914L14 13.4346L12.9346 14.5L9.89145 11.4568ZM11 7.25C11 9.59721 9.09721 11.5 6.75 11.5C4.40279 11.5 2.5 9.59721 2.5 7.25C2.5 4.90279 4.40279 3 6.75 3C9.09721 3 11 4.90279 11 7.25Z" fill="white"></path>
-											</g>
-										</svg>
+										<img src="src\assets\searchicon.svg">
 										<p class="flex-grow w-[254px] text-sm text-left text-white/60"> Patient ID or Patient Name </p>
 									</div>
 								</div>
-								<!-- analysis statud -->
+								<!-- analysis statuㄴ -->
 								<div class="flex justify-start items-center flex-grow-0 flex-shrink-0 w-60 h-10 relative gap-2 px-3 py-2.5 rounded-sm bg-[#1e1e1e] border border-white/30">
 									<div class="flex flex-col justify-center items-start flex-grow relative">
 										<p class="flex-grow-0 flex-shrink-0 text-xs text-left text-white/60"> Analysis Status </p>
